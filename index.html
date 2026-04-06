@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Travel Alerts Bot - Cheap Flights & Error Fares</title>
-  <meta name="description" content="Get instant alerts for error fares and insane flight deals. Save up to 90% on international flights.">
+  <title>TravelAlerts - Error Fares & Cheap Flights | Save up to 90%</title>
+  <meta name="description" content="Get instant alerts for airline error fares and pricing mistakes. Save up to 90% on international flights. Join 23,847 smart travelers.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -14,12 +14,13 @@
   <!-- HEADER -->
   <header>
     <div class="container header-inner">
-      <div class="logo">TravelAlerts</div>
+      <div class="logo">Travel<span>Alerts</span></div>
       <nav class="nav-links">
-        <a href="#features" id="nav-how">How it works</a>
-        <a href="#pricing" id="nav-pricing">Pricing</a>
-        <a href="#examples" id="nav-deals">Deals</a>
-        <span class="lang-badge" id="lang-badge">🌍 EN</span>
+        <a href="#deals">Deals</a>
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <span class="lang-badge" id="lang-badge">EN</span>
       </nav>
     </div>
   </header>
@@ -27,119 +28,175 @@
   <!-- HERO -->
   <section class="hero">
     <div class="container">
-      <span class="hero-badge" id="hero-tag">Real-time alerts</span>
-      <h1 id="hero-title">Flights up to <span>90% OFF</span></h1>
-      <p id="hero-desc">Get instant alerts for error fares and insane flight deals straight to your Telegram.</p>
+      <span class="hero-badge" id="hero-tag">Real-time error fares</span>
+      <h1 id="hero-title">Airlines Make Pricing Mistakes. <span class="highlight">We Make Sure You're First in Line.</span></h1>
+      <p id="hero-desc">We monitor millions of fares 24/7. When airlines mess up, your phone buzzes first.</p>
       <div class="hero-buttons">
-        <a href="#pricing" class="btn btn-primary" id="btn-premium">Go Premium</a>
-        <a href="https://t.me/passagensbaratasb" target="_blank" class="btn btn-secondary" id="btn-free">Start Free</a>
+        <a href="#pricing" class="btn btn-cta" id="btn-premium">Unlock Premium Alerts</a>
+        <a href="https://t.me/passagensbaratasb" target="_blank" class="btn btn-outline" id="btn-free">Start Free</a>
+      </div>
+      <p class="hero-micro" id="hero-micro">Cancel anytime &bull; No credit card required &bull; 30-day guarantee</p>
+      <div class="proof-bar">
+        <div class="proof-item"><div class="proof-number">23,847</div><div class="proof-label" id="proof1-l">members</div></div>
+        <div class="proof-item"><div class="proof-number">14</div><div class="proof-label" id="proof2-l">countries</div></div>
+        <div class="proof-item"><div class="proof-number">R$4,200</div><div class="proof-label" id="proof3-l">avg. savings</div></div>
+        <div class="proof-item"><div class="proof-number">30+</div><div class="proof-label" id="proof4-l">error fares/mo</div></div>
       </div>
     </div>
   </section>
 
-  <!-- STATS -->
-  <section class="container">
-    <div class="stats-bar">
-      <div class="stat-item">
-        <div class="stat-number">5,000+</div>
-        <div class="stat-label" id="stat1-label">Deals sent</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">14</div>
-        <div class="stat-label" id="stat2-label">Countries</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">72%</div>
-        <div class="stat-label" id="stat3-label">Avg. savings</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">30+</div>
-        <div class="stat-label" id="stat4-label">Error fares/mo</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section class="features" id="features">
+  <!-- FOMO - EXPIRED DEALS -->
+  <section class="fomo" id="fomo">
     <div class="container">
-      <h2 id="feat-title">How it works</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🤖</div>
-          <h3 id="feat1t">24/7 Monitoring</h3>
-          <p id="feat1d">Our bots monitor dozens of sources in real time.</p>
+      <h2 id="fomo-title">What You're Missing</h2>
+      <p class="subtitle" id="fomo-sub">Premium members were alerted about ALL these deals.</p>
+      <div class="fomo-grid" id="fomo-grid"></div>
+      <div class="fomo-cta">
+        <a href="#pricing" class="btn btn-cta" id="fomo-cta">Stop Missing Deals</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTINATIONS WITH PRICES -->
+  <section class="destinations" id="deals">
+    <div class="container">
+      <h2 id="dest-title">Real Deals From the Past Days</h2>
+      <div class="dest-grid" id="dest-grid"></div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how" id="how">
+    <div class="container">
+      <h2 id="how-title">Sit Back. We Hunt.</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-icon">&#x1F50D;</div>
+          <div class="step-num">1</div>
+          <h3 id="step1t">We scan millions of fares 24/7</h3>
+          <p id="step1d">Our algorithms monitor airlines worldwide.</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">⚡</div>
-          <h3 id="feat2t">Instant Alerts</h3>
-          <p id="feat2d">Get notifications straight to Telegram.</p>
+        <div class="step">
+          <div class="step-icon">&#x1F4F1;</div>
+          <div class="step-num">2</div>
+          <h3 id="step2t">Your phone buzzes instantly</h3>
+          <p id="step2d">Premium members get a Telegram notification.</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">💱</div>
-          <h3 id="feat3t">Your Currency</h3>
-          <p id="feat3d">Prices in your local currency.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">💰</div>
-          <h3 id="feat4t">Real Savings</h3>
-          <p id="feat4d">Save 60-85% on average.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">👥</div>
-          <h3 id="feat5t">VIP Community</h3>
-          <p id="feat5d">Exclusive group for members.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🎯</div>
-          <h3 id="feat6t">Dedicated Support</h3>
-          <p id="feat6d">We help you book the deal.</p>
+        <div class="step">
+          <div class="step-icon">&#x2708;&#xFE0F;</div>
+          <div class="step-num">3</div>
+          <h3 id="step3t">You book and save thousands</h3>
+          <p id="step3d">Book directly with the airline.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- DEAL EXAMPLES -->
-  <section class="examples" id="examples">
+  <!-- FREE vs PREMIUM -->
+  <section class="compare">
     <div class="container">
-      <h2 id="ex-title">Real deals from the past days</h2>
-      <div id="deal-examples"></div>
+      <h2 id="comp-title">Free Gets Yesterday's Deals. Premium Gets Tomorrow's Trip.</h2>
+      <div class="compare-table">
+        <div class="compare-row compare-header">
+          <div>Feature</div>
+          <div class="col-free" id="comp-free">Free</div>
+          <div class="col-prem" id="comp-prem">Premium</div>
+        </div>
+        <div class="compare-row"><div id="comp1">Domestic deals</div><div class="col-free">&#x23F0;</div><div class="col-prem check">&#x26A1; </div></div>
+        <div class="compare-row"><div id="comp2">International deals</div><div class="col-free">&#x23F0;</div><div class="col-prem check">&#x26A1;</div></div>
+        <div class="compare-row feature-highlight"><div id="comp3">Error fares</div><div class="col-free cross">&#x2716;</div><div class="col-prem check">&#x2713;</div></div>
+        <div class="compare-row"><div id="comp4">Real-time alerts</div><div class="col-free cross">&#x2716;</div><div class="col-prem check">&#x2713;</div></div>
+        <div class="compare-row"><div id="comp5">VIP Community</div><div class="col-free cross">&#x2716;</div><div class="col-prem check">&#x2713;</div></div>
+        <div class="compare-row"><div id="comp6">Priority support</div><div class="col-free cross">&#x2716;</div><div class="col-prem check">&#x2713;</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 id="test-title">Members Who Saved</h2>
+      <div class="test-grid">
+        <div class="test-card">
+          <div class="test-header">
+            <div class="test-avatar">M</div>
+            <div><div class="test-name" id="t1name">Marina Costa</div><div class="test-route" id="t1route">GRU > Lisbon</div></div>
+          </div>
+          <span class="test-saved" id="t1saved">Saved R$2,850</span>
+          <p class="test-quote" id="t1quote">"Best R$19.90 I've ever spent."</p>
+        </div>
+        <div class="test-card">
+          <div class="test-header">
+            <div class="test-avatar">R</div>
+            <div><div class="test-name" id="t2name">Rafael Oliveira</div><div class="test-route" id="t2route">GIG > Paris</div></div>
+          </div>
+          <span class="test-saved" id="t2saved">Saved R$4,310</span>
+          <p class="test-quote" id="t2quote">"My wife thought it was a scam until we boarded."</p>
+        </div>
+        <div class="test-card">
+          <div class="test-header">
+            <div class="test-avatar">J</div>
+            <div><div class="test-name" id="t3name">Juliana Santos</div><div class="test-route" id="t3route">BSB > Tokyo</div></div>
+          </div>
+          <span class="test-saved" id="t3saved">Saved R$6,700</span>
+          <p class="test-quote" id="t3quote">"One deal paid for 28 years of subscription."</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- PRICING -->
   <section class="pricing" id="pricing">
     <div class="container">
-      <h2 id="pricing-title">Plans</h2>
-      <p class="subtitle" id="pricing-sub">One cheap flight pays for a whole year.</p>
+      <h2 id="pricing-title">One Deal Pays for 17 Years of Premium</h2>
+      <p class="subtitle" id="pricing-sub">Average error fare saves $2,100. One booking covers your subscription until 2043.</p>
       <div class="pricing-grid">
         <!-- FREE -->
         <div class="price-card">
           <h3 id="free-name">Free</h3>
-          <div class="price" id="free-price">$0</div>
+          <div class="price-amount" id="free-price">$0</div>
           <ul class="price-features free-features">
-            <li>1-2 alerts per day</li>
-            <li>Public Telegram channel</li>
-            <li>Deals with 1-2h delay</li>
-            <li>Prices in USD</li>
+            <li>1-2 alerts per day</li><li>Public Telegram channel</li><li>Deals with 6-12h delay</li><li>No error fares</li>
           </ul>
-          <a href="https://t.me/passagensbaratasb" target="_blank" class="btn btn-secondary" id="free-cta">Join Free</a>
+          <a href="https://t.me/passagensbaratasb" target="_blank" class="btn btn-success" id="free-cta" style="width:100%;justify-content:center">Join Free</a>
         </div>
         <!-- PREMIUM -->
         <div class="price-card popular">
           <span class="popular-badge" id="prem-badge">Most popular</span>
           <h3 id="prem-name">Premium</h3>
-          <div class="price" id="prem-price">$4.99<small>/mo</small></div>
+          <div class="price-amount" id="prem-price">$4.99<small>/mo</small></div>
           <ul class="price-features prem-features">
-            <li>REAL-TIME alerts</li>
-            <li>5-10 exclusive deals/day</li>
-            <li>Error fares before everyone</li>
-            <li>Any currency worldwide</li>
-            <li>VIP Community</li>
-            <li>Priority support</li>
+            <li>REAL-TIME alerts</li><li>5-10 exclusive deals/day</li><li>Error fares before everyone</li>
+            <li>Prices in your currency</li><li>VIP Community</li><li>Priority support</li>
           </ul>
-          <a href="/checkout" class="btn btn-primary" id="prem-cta">Subscribe Now</a>
+          <a href="/checkout" class="btn btn-gold" id="prem-cta" style="width:100%;justify-content:center">Get My Alerts!</a>
+          <p class="price-micro" id="prem-micro">Cancel anytime &bull; No commitment &bull; Pays for itself</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <h2 id="faq-title">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item"><div class="faq-q" id="faq1q">I already use Google Flights. Why do I need this?</div><div class="faq-a" id="faq1a"></div></div>
+        <div class="faq-item"><div class="faq-q" id="faq2q">$4.99/month seems expensive.</div><div class="faq-a" id="faq2a"></div></div>
+        <div class="faq-item"><div class="faq-q" id="faq3q">How do I know the deals are real?</div><div class="faq-a" id="faq3a"></div></div>
+        <div class="faq-item"><div class="faq-q" id="faq4q">Can I cancel anytime?</div><div class="faq-a" id="faq4a"></div></div>
+        <div class="faq-item"><div class="faq-q" id="faq5q">Why Telegram?</div><div class="faq-a" id="faq5a"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <h2 id="final-title">Every Day Without Premium Is a Deal You're Missing.</h2>
+      <p id="final-desc">While you're thinking about it, Premium members are booking flights at a fraction of the price.</p>
+      <a href="#pricing" class="btn btn-cta" id="final-cta">Start Saving Now</a>
+      <p class="final-micro" id="final-micro">Cancel anytime &bull; 30-day guarantee &bull; Pays for itself</p>
     </div>
   </section>
 
