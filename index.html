@@ -11,6 +11,30 @@
 </head>
 <body>
 
+  <!-- FLOATING FLAGS LEFT -->
+  <div class="floating-flags">
+    <span class="flag-float">&#x1F1E7;&#x1F1F7;</span>
+    <span class="flag-float">&#x1F1EC;&#x1F1E7;</span>
+    <span class="flag-float">&#x1F1E8;&#x1F1ED;</span>
+    <span class="flag-float">&#x1F1FA;&#x1F1F8;</span>
+    <span class="flag-float">&#x1F1E6;&#x1F1FA;</span>
+    <span class="flag-float">&#x1F1EF;&#x1F1F5;</span>
+    <span class="flag-float">&#x1F1E6;&#x1F1EA;</span>
+  </div>
+  <!-- FLOATING FLAGS RIGHT -->
+  <div class="floating-flags-right">
+    <span class="flag-float">&#x1F1EB;&#x1F1F7;</span>
+    <span class="flag-float">&#x1F1EE;&#x1F1F9;</span>
+    <span class="flag-float">&#x1F1F0;&#x1F1F7;</span>
+    <span class="flag-float">&#x1F1E8;&#x1F1E6;</span>
+    <span class="flag-float">&#x1F1F2;&#x1F1FD;</span>
+    <span class="flag-float">&#x1F1E9;&#x1F1EA;</span>
+    <span class="flag-float">&#x1F1F3;&#x1F1F4;</span>
+  </div>
+
+  <!-- PULSING CTA BUTTON (fixed) -->
+  <a href="#pricing" class="pulsing-cta" id="pulsing-cta">&#x1F514; <span id="pulse-text">Get Alerts Now</span></a>
+
   <!-- HEADER -->
   <header>
     <div class="container header-inner">
@@ -45,6 +69,16 @@
     </div>
   </section>
 
+  <!-- CAROUSEL / ROLETA DE DEALS -->
+  <section class="carousel-section" id="deals">
+    <div class="container">
+      <h2 id="dest-title">Real Deals From the Past Days</h2>
+    </div>
+    <div class="carousel-track" id="carousel-track">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
   <!-- FOMO - EXPIRED DEALS -->
   <section class="fomo" id="fomo">
     <div class="container">
@@ -54,14 +88,6 @@
       <div class="fomo-cta">
         <a href="#pricing" class="btn btn-cta" id="fomo-cta">Stop Missing Deals</a>
       </div>
-    </div>
-  </section>
-
-  <!-- DESTINATIONS WITH PRICES -->
-  <section class="destinations" id="deals">
-    <div class="container">
-      <h2 id="dest-title">Real Deals From the Past Days</h2>
-      <div class="dest-grid" id="dest-grid"></div>
     </div>
   </section>
 
@@ -102,7 +128,7 @@
           <div class="col-free" id="comp-free">Free</div>
           <div class="col-prem" id="comp-prem">Premium</div>
         </div>
-        <div class="compare-row"><div id="comp1">Domestic deals</div><div class="col-free">&#x23F0;</div><div class="col-prem check">&#x26A1; </div></div>
+        <div class="compare-row"><div id="comp1">Domestic deals</div><div class="col-free">&#x23F0;</div><div class="col-prem check">&#x26A1;</div></div>
         <div class="compare-row"><div id="comp2">International deals</div><div class="col-free">&#x23F0;</div><div class="col-prem check">&#x26A1;</div></div>
         <div class="compare-row feature-highlight"><div id="comp3">Error fares</div><div class="col-free cross">&#x2716;</div><div class="col-prem check">&#x2713;</div></div>
         <div class="compare-row"><div id="comp4">Real-time alerts</div><div class="col-free cross">&#x2716;</div><div class="col-prem check">&#x2713;</div></div>
@@ -151,7 +177,6 @@
       <h2 id="pricing-title">One Deal Pays for 17 Years of Premium</h2>
       <p class="subtitle" id="pricing-sub">Average error fare saves $2,100. One booking covers your subscription until 2043.</p>
       <div class="pricing-grid">
-        <!-- FREE -->
         <div class="price-card">
           <h3 id="free-name">Free</h3>
           <div class="price-amount" id="free-price">$0</div>
@@ -160,7 +185,6 @@
           </ul>
           <a href="https://t.me/passagensbaratasb" target="_blank" class="btn btn-success" id="free-cta" style="width:100%;justify-content:center">Join Free</a>
         </div>
-        <!-- PREMIUM -->
         <div class="price-card popular">
           <span class="popular-badge" id="prem-badge">Most popular</span>
           <h3 id="prem-name">Premium</h3>
@@ -169,7 +193,7 @@
             <li>REAL-TIME alerts</li><li>5-10 exclusive deals/day</li><li>Error fares before everyone</li>
             <li>Prices in your currency</li><li>VIP Community</li><li>Priority support</li>
           </ul>
-          <a href="/checkout" class="btn btn-gold" id="prem-cta" style="width:100%;justify-content:center">Get My Alerts!</a>
+          <a href="/checkout" class="btn btn-cta" id="prem-cta" style="width:100%;justify-content:center">Get My Alerts!</a>
           <p class="price-micro" id="prem-micro">Cancel anytime &bull; No commitment &bull; Pays for itself</p>
         </div>
       </div>

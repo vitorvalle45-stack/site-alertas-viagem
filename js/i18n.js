@@ -339,19 +339,21 @@ function applyAll(lang, currCode, country) {
     </div>
   `}).join('');
 
-  // Destinations
+  // Carousel / Roleta de deals
   document.getElementById('dest-title').textContent = t.destTitle;
   const dests = DEST_DEALS_BY_COUNTRY[cGroup] || DEST_DEALS_BY_COUNTRY.US;
-  document.getElementById('dest-grid').innerHTML = dests.map(d => `
-    <div class="dest-card">
-      <span class="dest-tag">${d.tag}</span>
-      <img class="dest-img" src="${d.img}" alt="${d.route}" loading="lazy">
-      <div class="dest-info">
-        <div class="dest-route">\u2708\uFE0F ${d.route}</div>
-        ${d.sub ? `<div style="color:#64748B;font-size:0.8rem;margin-bottom:8px">${d.sub}</div>` : ''}
-        <div class="dest-price-row">
-          <span class="dest-original">${d.original}</span>
-          <span class="dest-deal">${d.deal}</span>
+  // Duplica os cards pra criar loop infinito
+  const allDests = [...dests, ...dests];
+  document.getElementById('carousel-track').innerHTML = allDests.map(d => `
+    <div class="deal-slide">
+      <span class="deal-slide-tag">${d.tag}</span>
+      <img src="${d.img}" alt="${d.route}" loading="lazy">
+      <div class="deal-slide-info">
+        <div class="deal-slide-route">\u2708\uFE0F ${d.route}</div>
+        ${d.sub ? `<div class="deal-slide-sub">${d.sub}</div>` : ''}
+        <div class="deal-slide-prices">
+          <span class="deal-slide-original">${d.original}</span>
+          <span class="deal-slide-deal">${d.deal}</span>
         </div>
       </div>
     </div>
@@ -416,8 +418,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   const data = await detectCountry();
   const lang = data.lang || 'en';
   const curr = data.currency?.code || 'USD';
-  document.getElementById('lang-badge').textContent = lang === 'pt' ? '\U0001F1E7\U0001F1F7 PT-BR' : '\U0001F30D EN';
+  document.getElementById('lang-badge').textContent = lang === 'pt' ? '\ud83c\udde7\ud83c\uddf7 PT-BR' : '\ud83c\udf0d EN';
   applyAll(lang, curr, data.country);
+
+  // Pulsing CTA text
+  document.getElementById('pulse-text').textContent = lang === 'pt' ? 'Quero Meus Alertas!' : 'Get Alerts Now';
 
   // FAQ toggle
   document.querySelectorAll('.faq-q').forEach(q => {
