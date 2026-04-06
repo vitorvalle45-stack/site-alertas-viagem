@@ -21,7 +21,7 @@ const TEXTS = {
     destTitle: "Deals Reais dos Ultimos Dias",
 
     // How
-    howTitle: "Sente e Espere. A Gente Caca.",
+    howTitle: "Sente e Espere. A Gente Ca\u00E7a.",
     step1t: "Escaneamos milhoes de tarifas 24/7",
     step1d: "Nossos algoritmos monitoram companhias aereas do mundo inteiro buscando erros de preco e promocoes relampago.",
     step2t: "Seu celular vibra na hora",
