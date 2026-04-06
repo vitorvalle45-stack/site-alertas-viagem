@@ -159,23 +159,73 @@ const PRICES = {
   MXN: { symbol: 'MX$', premium: '89.90' },
 };
 
-const FOMO_DEALS = {
-  pt: [
+// FOMO deals por pais (rotas reais, precos reais, cias reais)
+const FOMO_DEALS_BY_COUNTRY = {
+  BR: [
     { route: 'GRU \u2192 Paris (Air France, direto, 11h30)', original: 'R$ 5.200', deal: 'R$ 2.100', savings: '60% OFF', time: 'Expirou ha 47h' },
     { route: 'GIG \u2192 Lisboa (TAP, direto, 9h45)', original: 'R$ 4.800', deal: 'R$ 1.650', savings: '66% OFF', time: 'Expirou ha 23h' },
     { route: 'GRU \u2192 Dubai (Emirates, direto, 14h25)', original: 'R$ 5.500', deal: 'R$ 2.400', savings: '56% OFF', time: 'Expirou ha 5h' },
     { route: 'GRU \u2192 Bangkok (Qatar, via Doha, 22h45)', original: 'R$ 6.800', deal: 'R$ 2.300', savings: '66% OFF', time: 'Expirou ha 12h' },
   ],
-  en: [
+  US: [
     { route: 'JFK \u2192 Paris (Air France, nonstop, 7h20)', original: '$890', deal: '$289', savings: '68% OFF', time: 'Expired 47h ago' },
-    { route: 'LHR \u2192 Tokyo (JAL, via Helsinki, 14h)', original: '\u00A31,200', deal: '\u00A3380', savings: '68% OFF', time: 'Expired 23h ago' },
-    { route: 'SYD \u2192 Bali (Jetstar, direct, 6h15)', original: 'A$850', deal: 'A$190', savings: '78% OFF', time: 'Expired 5h ago' },
-    { route: 'LAX \u2192 Rome (ITA Airways, nonstop, 12h)', original: '$1,100', deal: '$310', savings: '72% OFF', time: 'Expired 12h ago' },
+    { route: 'LAX \u2192 Tokyo (ANA, nonstop, 11h30)', original: '$1,400', deal: '$489', savings: '65% OFF', time: 'Expired 23h ago' },
+    { route: 'ORD \u2192 Rome (ITA Airways, nonstop, 9h45)', original: '$1,100', deal: '$310', savings: '72% OFF', time: 'Expired 5h ago' },
+    { route: 'MIA \u2192 London (British Airways, nonstop, 9h)', original: '$780', deal: '$245', savings: '69% OFF', time: 'Expired 12h ago' },
+  ],
+  GB: [
+    { route: 'LHR \u2192 Tokyo (JAL, via Helsinki, 14h)', original: '\u00A31,200', deal: '\u00A3380', savings: '68% OFF', time: 'Expired 47h ago' },
+    { route: 'LHR \u2192 New York (BA, nonstop, 8h)', original: '\u00A3650', deal: '\u00A3189', savings: '71% OFF', time: 'Expired 23h ago' },
+    { route: 'LGW \u2192 Bali (Singapore Air, via SIN, 16h)', original: '\u00A3900', deal: '\u00A3320', savings: '64% OFF', time: 'Expired 5h ago' },
+    { route: 'MAN \u2192 Dubai (Emirates, nonstop, 7h)', original: '\u00A3580', deal: '\u00A3195', savings: '66% OFF', time: 'Expired 12h ago' },
+  ],
+  EU: [
+    { route: 'CDG \u2192 Tokyo (Air France, nonstop, 12h)', original: '\u20AC1,100', deal: '\u20AC390', savings: '65% OFF', time: 'Expired 47h ago' },
+    { route: 'FRA \u2192 Bangkok (Lufthansa, nonstop, 10h45)', original: '\u20AC850', deal: '\u20AC289', savings: '66% OFF', time: 'Expired 23h ago' },
+    { route: 'AMS \u2192 Bali (KLM, via Singapore, 17h)', original: '\u20AC950', deal: '\u20AC340', savings: '64% OFF', time: 'Expired 5h ago' },
+    { route: 'BCN \u2192 New York (TAP, via Lisbon, 11h)', original: '\u20AC680', deal: '\u20AC210', savings: '69% OFF', time: 'Expired 12h ago' },
+  ],
+  AU: [
+    { route: 'SYD \u2192 Bali (Jetstar, direct, 6h15)', original: 'A$850', deal: 'A$190', savings: '78% OFF', time: 'Expired 47h ago' },
+    { route: 'MEL \u2192 Tokyo (Qantas, nonstop, 10h30)', original: 'A$1,600', deal: 'A$520', savings: '68% OFF', time: 'Expired 23h ago' },
+    { route: 'SYD \u2192 London (Qatar, via Doha, 22h)', original: 'A$2,200', deal: 'A$690', savings: '69% OFF', time: 'Expired 5h ago' },
+    { route: 'BNE \u2192 Bangkok (Thai, via SYD, 12h)', original: 'A$1,100', deal: 'A$350', savings: '68% OFF', time: 'Expired 12h ago' },
+  ],
+  AE: [
+    { route: 'DXB \u2192 London (Emirates, nonstop, 7h)', original: 'AED 3,800', deal: 'AED 1,200', savings: '68% OFF', time: 'Expired 47h ago' },
+    { route: 'DXB \u2192 Bangkok (flydubai, nonstop, 6h20)', original: 'AED 2,900', deal: 'AED 890', savings: '69% OFF', time: 'Expired 23h ago' },
+    { route: 'DXB \u2192 Bali (Emirates, via SIN, 12h)', original: 'AED 4,200', deal: 'AED 1,400', savings: '67% OFF', time: 'Expired 5h ago' },
+    { route: 'AUH \u2192 Paris (Etihad, nonstop, 7h15)', original: 'AED 3,600', deal: 'AED 1,100', savings: '69% OFF', time: 'Expired 12h ago' },
+  ],
+  JP: [
+    { route: 'NRT \u2192 Paris (Air France, nonstop, 13h)', original: '\u00A5185,000', deal: '\u00A558,000', savings: '69% OFF', time: 'Expired 47h ago' },
+    { route: 'HND \u2192 Bali (Garuda, via Jakarta, 10h)', original: '\u00A5120,000', deal: '\u00A542,000', savings: '65% OFF', time: 'Expired 23h ago' },
+    { route: 'KIX \u2192 London (Turkish, via IST, 17h)', original: '\u00A5195,000', deal: '\u00A565,000', savings: '67% OFF', time: 'Expired 5h ago' },
+    { route: 'NRT \u2192 New York (ANA, nonstop, 13h)', original: '\u00A5165,000', deal: '\u00A555,000', savings: '67% OFF', time: 'Expired 12h ago' },
+  ],
+  CH: [
+    { route: 'ZRH \u2192 Tokyo (SWISS, nonstop, 12h)', original: 'CHF 1,200', deal: 'CHF 410', savings: '66% OFF', time: 'Expired 47h ago' },
+    { route: 'GVA \u2192 New York (SWISS, nonstop, 9h)', original: 'CHF 890', deal: 'CHF 280', savings: '69% OFF', time: 'Expired 23h ago' },
+    { route: 'ZRH \u2192 Bangkok (Thai, nonstop, 11h)', original: 'CHF 950', deal: 'CHF 310', savings: '67% OFF', time: 'Expired 5h ago' },
+    { route: 'ZRH \u2192 Dubai (Emirates, nonstop, 6h)', original: 'CHF 680', deal: 'CHF 220', savings: '68% OFF', time: 'Expired 12h ago' },
+  ],
+  CA: [
+    { route: 'YYZ \u2192 Paris (Air Canada, nonstop, 7h30)', original: 'C$1,200', deal: 'C$389', savings: '68% OFF', time: 'Expired 47h ago' },
+    { route: 'YVR \u2192 Tokyo (ANA, nonstop, 10h)', original: 'C$1,500', deal: 'C$490', savings: '67% OFF', time: 'Expired 23h ago' },
+    { route: 'YUL \u2192 London (BA, nonstop, 7h)', original: 'C$980', deal: 'C$310', savings: '68% OFF', time: 'Expired 5h ago' },
+    { route: 'YYZ \u2192 Bali (Cathay, via HKG, 22h)', original: 'C$2,400', deal: 'C$790', savings: '67% OFF', time: 'Expired 12h ago' },
+  ],
+  KR: [
+    { route: 'ICN \u2192 Paris (Korean Air, nonstop, 12h)', original: '\u20A91,650,000', deal: '\u20A9540,000', savings: '67% OFF', time: 'Expired 47h ago' },
+    { route: 'ICN \u2192 Bali (Korean Air, nonstop, 7h)', original: '\u20A9850,000', deal: '\u20A9280,000', savings: '67% OFF', time: 'Expired 23h ago' },
+    { route: 'ICN \u2192 New York (Asiana, nonstop, 14h)', original: '\u20A91,800,000', deal: '\u20A9590,000', savings: '67% OFF', time: 'Expired 5h ago' },
+    { route: 'ICN \u2192 London (BA, nonstop, 12h)', original: '\u20A91,500,000', deal: '\u20A9490,000', savings: '67% OFF', time: 'Expired 12h ago' },
   ],
 };
 
-const DEST_DEALS = {
-  pt: [
+// Dest deals por pais
+const DEST_DEALS_BY_COUNTRY = {
+  BR: [
     { img: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80', route: 'GRU \u2192 Paris', sub: 'Air France \u2022 Direto \u2022 11h30', original: 'R$ 5.200', deal: 'R$ 2.100', tag: 'ERROR FARE' },
     { img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=600&q=80', route: 'GRU \u2192 Dubai', sub: 'Emirates \u2022 Direto \u2022 14h25', original: 'R$ 5.500', deal: 'R$ 2.400', tag: 'BUG' },
     { img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80', route: 'GRU \u2192 Bali', sub: 'Qatar Airways \u2022 Via Doha \u2022 26h', original: 'R$ 7.500', deal: 'R$ 3.999', tag: 'ERROR FARE' },
@@ -183,15 +233,63 @@ const DEST_DEALS = {
     { img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=600&q=80', route: 'GRU \u2192 Roma', sub: 'ITA Airways \u2022 Direto \u2022 11h', original: 'R$ 4.900', deal: 'R$ 1.650', tag: 'ERROR FARE' },
     { img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&q=80', route: 'GRU \u2192 Bangkok', sub: 'Emirates \u2022 Via Dubai \u2022 22h', original: 'R$ 6.800', deal: 'R$ 2.300', tag: 'BUG' },
   ],
-  en: [
+  US: [
     { img: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80', route: 'JFK \u2192 Paris', sub: 'Air France \u2022 Nonstop \u2022 7h20', original: '$890', deal: '$289', tag: 'ERROR FARE' },
-    { img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=600&q=80', route: 'LHR \u2192 Dubai', sub: 'Emirates \u2022 Nonstop \u2022 7h', original: '\u00A3650', deal: '\u00A3220', tag: 'MISTAKE' },
-    { img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80', route: 'LAX \u2192 Bali', sub: 'Cathay Pacific \u2022 Via HKG \u2022 20h', original: '$2,400', deal: '$799', tag: 'ERROR FARE' },
-    { img: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&q=80', route: 'JFK \u2192 Miami', sub: 'JetBlue \u2022 Nonstop \u2022 3h', original: '$380', deal: '$49', tag: 'DEAL' },
-    { img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=600&q=80', route: 'SYD \u2192 Rome', sub: 'Qatar \u2022 Via Doha \u2022 22h', original: 'A$2,100', deal: 'A$650', tag: 'ERROR FARE' },
-    { img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&q=80', route: 'JFK \u2192 Bangkok', sub: 'Turkish \u2022 Via Istanbul \u2022 19h', original: '$1,200', deal: '$389', tag: 'MISTAKE' },
+    { img: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&q=80', route: 'LAX \u2192 Tokyo', sub: 'ANA \u2022 Nonstop \u2022 11h30', original: '$1,400', deal: '$489', tag: 'MISTAKE' },
+    { img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80', route: 'SFO \u2192 Bali', sub: 'Cathay Pacific \u2022 Via HKG \u2022 20h', original: '$2,400', deal: '$799', tag: 'ERROR FARE' },
+    { img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=600&q=80', route: 'ORD \u2192 Rome', sub: 'ITA Airways \u2022 Nonstop \u2022 9h45', original: '$1,100', deal: '$310', tag: 'ERROR FARE' },
+    { img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=600&q=80', route: 'JFK \u2192 Dubai', sub: 'Emirates \u2022 Nonstop \u2022 12h30', original: '$1,050', deal: '$340', tag: 'MISTAKE' },
+    { img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&q=80', route: 'LAX \u2192 Bangkok', sub: 'EVA Air \u2022 Via Taipei \u2022 19h', original: '$1,200', deal: '$389', tag: 'ERROR FARE' },
+  ],
+  GB: [
+    { img: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&q=80', route: 'LHR \u2192 Tokyo', sub: 'JAL \u2022 Via Helsinki \u2022 14h', original: '\u00A31,200', deal: '\u00A3380', tag: 'ERROR FARE' },
+    { img: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&q=80', route: 'LHR \u2192 New York', sub: 'BA \u2022 Nonstop \u2022 8h', original: '\u00A3650', deal: '\u00A3189', tag: 'MISTAKE' },
+    { img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80', route: 'LGW \u2192 Bali', sub: 'Singapore Air \u2022 Via SIN \u2022 16h', original: '\u00A3900', deal: '\u00A3320', tag: 'ERROR FARE' },
+    { img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=600&q=80', route: 'MAN \u2192 Dubai', sub: 'Emirates \u2022 Nonstop \u2022 7h', original: '\u00A3580', deal: '\u00A3195', tag: 'DEAL' },
+    { img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&q=80', route: 'LHR \u2192 Bangkok', sub: 'Thai Airways \u2022 Nonstop \u2022 11h30', original: '\u00A3750', deal: '\u00A3260', tag: 'ERROR FARE' },
+    { img: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80', route: 'LHR \u2192 Paris', sub: 'Eurostar \u2022 Train \u2022 2h15', original: '\u00A3200', deal: '\u00A359', tag: 'PROMO' },
+  ],
+  EU: [
+    { img: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&q=80', route: 'CDG \u2192 Tokyo', sub: 'Air France \u2022 Nonstop \u2022 12h', original: '\u20AC1,100', deal: '\u20AC390', tag: 'ERROR FARE' },
+    { img: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&q=80', route: 'FRA \u2192 New York', sub: 'Lufthansa \u2022 Nonstop \u2022 9h', original: '\u20AC780', deal: '\u20AC249', tag: 'MISTAKE' },
+    { img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80', route: 'AMS \u2192 Bali', sub: 'KLM \u2022 Via Singapore \u2022 17h', original: '\u20AC950', deal: '\u20AC340', tag: 'ERROR FARE' },
+    { img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=600&q=80', route: 'MAD \u2192 Dubai', sub: 'Emirates \u2022 Nonstop \u2022 7h', original: '\u20AC650', deal: '\u20AC210', tag: 'DEAL' },
+    { img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&q=80', route: 'FRA \u2192 Bangkok', sub: 'Lufthansa \u2022 Nonstop \u2022 10h45', original: '\u20AC850', deal: '\u20AC289', tag: 'ERROR FARE' },
+    { img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=600&q=80', route: 'FCO \u2192 Rio', sub: 'ITA Airways \u2022 Nonstop \u2022 11h', original: '\u20AC890', deal: '\u20AC310', tag: 'MISTAKE' },
+  ],
+  AU: [
+    { img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80', route: 'SYD \u2192 Bali', sub: 'Jetstar \u2022 Direct \u2022 6h15', original: 'A$850', deal: 'A$190', tag: 'ERROR FARE' },
+    { img: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&q=80', route: 'MEL \u2192 Tokyo', sub: 'Qantas \u2022 Nonstop \u2022 10h30', original: 'A$1,600', deal: 'A$520', tag: 'MISTAKE' },
+    { img: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80', route: 'SYD \u2192 London', sub: 'Qatar \u2022 Via Doha \u2022 22h', original: 'A$2,200', deal: 'A$690', tag: 'ERROR FARE' },
+    { img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&q=80', route: 'BNE \u2192 Bangkok', sub: 'Thai Airways \u2022 Via SYD \u2022 12h', original: 'A$1,100', deal: 'A$350', tag: 'DEAL' },
+    { img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=600&q=80', route: 'PER \u2192 Dubai', sub: 'Emirates \u2022 Nonstop \u2022 11h', original: 'A$1,400', deal: 'A$450', tag: 'ERROR FARE' },
+    { img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=600&q=80', route: 'SYD \u2192 Rome', sub: 'Qatar \u2022 Via Doha \u2022 22h', original: 'A$2,100', deal: 'A$650', tag: 'MISTAKE' },
+  ],
+  AE: [
+    { img: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&q=80', route: 'DXB \u2192 London', sub: 'Emirates \u2022 Nonstop \u2022 7h', original: 'AED 3,800', deal: 'AED 1,200', tag: 'ERROR FARE' },
+    { img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&q=80', route: 'DXB \u2192 Bangkok', sub: 'flydubai \u2022 Nonstop \u2022 6h20', original: 'AED 2,900', deal: 'AED 890', tag: 'DEAL' },
+    { img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80', route: 'DXB \u2192 Bali', sub: 'Emirates \u2022 Via SIN \u2022 12h', original: 'AED 4,200', deal: 'AED 1,400', tag: 'ERROR FARE' },
+    { img: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80', route: 'AUH \u2192 Paris', sub: 'Etihad \u2022 Nonstop \u2022 7h15', original: 'AED 3,600', deal: 'AED 1,100', tag: 'MISTAKE' },
+    { img: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&q=80', route: 'DXB \u2192 Tokyo', sub: 'Emirates \u2022 Nonstop \u2022 9h40', original: 'AED 5,200', deal: 'AED 1,700', tag: 'ERROR FARE' },
+    { img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=600&q=80', route: 'DXB \u2192 Rome', sub: 'Emirates \u2022 Nonstop \u2022 6h15', original: 'AED 3,100', deal: 'AED 980', tag: 'DEAL' },
   ],
 };
+
+// Fallback: mapeia pais pra grupo de deals
+function getCountryGroup(country) {
+  const map = {
+    BR: 'BR', PT: 'BR',
+    US: 'US', MX: 'US',
+    GB: 'GB', IE: 'GB',
+    AU: 'AU', NZ: 'AU',
+    AE: 'AE', SA: 'AE', QA: 'AE', BH: 'AE', KW: 'AE', OM: 'AE',
+    JP: 'JP', KR: 'JP',
+    CH: 'EU', DE: 'EU', FR: 'EU', IT: 'EU', ES: 'EU', NL: 'EU', BE: 'EU',
+    AT: 'EU', SE: 'EU', NO: 'EU', DK: 'EU', FI: 'EU', GR: 'EU', HR: 'EU',
+    CA: 'US',
+  };
+  return map[country] || 'US';
+}
 
 async function detectCountry() {
   try {
@@ -202,7 +300,8 @@ async function detectCountry() {
   }
 }
 
-function applyAll(lang, currCode) {
+function applyAll(lang, currCode, country) {
+  const cGroup = getCountryGroup(country || 'US');
   const t = TEXTS[lang] || TEXTS.en;
   const p = PRICES[currCode] || PRICES.USD;
 
@@ -224,10 +323,12 @@ function applyAll(lang, currCode) {
   document.getElementById('fomo-title').textContent = t.fomoTitle;
   document.getElementById('fomo-sub').textContent = t.fomoSub;
   document.getElementById('fomo-cta').textContent = t.fomoCta;
-  const fomoDeals = FOMO_DEALS[lang] || FOMO_DEALS.en;
-  document.getElementById('fomo-grid').innerHTML = fomoDeals.map(d => `
+  const fomoDeals = FOMO_DEALS_BY_COUNTRY[cGroup] || FOMO_DEALS_BY_COUNTRY.US;
+  document.getElementById('fomo-grid').innerHTML = fomoDeals.map(d => {
+    const timeText = lang === 'pt' ? d.time.replace('Expired','Expirou').replace('ago','atras') : d.time.replace('Expirou ha','Expired').replace('atras','ago');
+    return `
     <div class="fomo-card">
-      <span class="expired-badge">\u274C ${t.expired} </span>
+      <span class="expired-badge">\u274C ${t.expired}</span>
       <div class="fomo-route">\u2708\uFE0F ${d.route}</div>
       <div class="fomo-prices">
         <span class="fomo-original">${d.original}</span>
@@ -236,11 +337,11 @@ function applyAll(lang, currCode) {
       <span class="fomo-savings">${d.savings}</span>
       <div class="fomo-time">\u23F0 ${d.time}</div>
     </div>
-  `).join('');
+  `}).join('');
 
   // Destinations
   document.getElementById('dest-title').textContent = t.destTitle;
-  const dests = DEST_DEALS[lang] || DEST_DEALS.en;
+  const dests = DEST_DEALS_BY_COUNTRY[cGroup] || DEST_DEALS_BY_COUNTRY.US;
   document.getElementById('dest-grid').innerHTML = dests.map(d => `
     <div class="dest-card">
       <span class="dest-tag">${d.tag}</span>
@@ -316,7 +417,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const lang = data.lang || 'en';
   const curr = data.currency?.code || 'USD';
   document.getElementById('lang-badge').textContent = lang === 'pt' ? '\U0001F1E7\U0001F1F7 PT-BR' : '\U0001F30D EN';
-  applyAll(lang, curr);
+  applyAll(lang, curr, data.country);
 
   // FAQ toggle
   document.querySelectorAll('.faq-q').forEach(q => {
