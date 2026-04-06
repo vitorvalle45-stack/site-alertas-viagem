@@ -2,79 +2,79 @@ const TEXTS = {
   pt: {
     // Hero
     heroTag: "Error fares em tempo real",
-    heroTitle: 'Companhias Aereas Erram nos Precos. <span class="highlight">Nossos Membros Agradecem.</span>',
-    heroDesc: "Monitoramos milhoes de tarifas 24/7. Quando as companhias erram, seu celular vibra primeiro. Membros economizam em media R$4.200 por viagem.",
+    heroTitle: 'Companhias A\u00E9reas Erram nos Pre\u00E7os. <span class="highlight">Nossos Membros Agradecem.</span>',
+    heroDesc: "Monitoramos milh\u00F5es de tarifas 24/7. Quando as companhias erram, seu celular vibra primeiro. Membros economizam em m\u00E9dia R$4.200 por viagem.",
     btnPremium: "Desbloquear Alertas Premium",
-    btnFree: "Comecar Gratis",
-    heroMicro: "Cancele quando quiser \u2022 Sem cartao necessario \u2022 Garantia de 30 dias",
+    btnFree: "Come\u00E7ar Gr\u00E1tis",
+    heroMicro: "Cancele quando quiser \u2022 Sem cart\u00E3o necess\u00E1rio \u2022 Garantia de 30 dias",
 
     // Proof bar
-    proof1: "membros", proof2: "paises", proof3: "economia media", proof4: "error fares/mes",
+    proof1: "membros", proof2: "pa\u00EDses", proof3: "economia m\u00E9dia", proof4: "error fares/m\u00EAs",
 
     // FOMO
-    fomoTitle: "O Que Voce Esta Perdendo",
-    fomoSub: "Membros Premium foram alertados sobre TODOS esses deals em tempo real. Quanto tempo mais voce vai assistir de fora?",
+    fomoTitle: "O Que Voc\u00EA Est\u00E1 Perdendo",
+    fomoSub: "Membros Premium foram alertados sobre TODOS esses deals em tempo real. Quanto tempo mais voc\u00EA vai assistir de fora?",
     fomoCta: "Parar de Perder Deals",
     expired: "EXPIROU",
 
     // Destinations
-    destTitle: "Deals Reais dos Ultimos Dias",
+    destTitle: "Deals Reais dos \u00DAltimos Dias",
 
     // How
     howTitle: "Sente e Espere. A Gente Ca\u00E7a.",
-    step1t: "Escaneamos milhoes de tarifas 24/7",
-    step1d: "Nossos algoritmos monitoram companhias aereas do mundo inteiro buscando erros de preco e promocoes relampago.",
+    step1t: "Escaneamos milh\u00F5es de tarifas 24/7",
+    step1d: "Nossos algoritmos monitoram companhias a\u00E9reas do mundo inteiro buscando erros de pre\u00E7o e promo\u00E7\u00F5es rel\u00E2mpago.",
     step2t: "Seu celular vibra na hora",
-    step2d: "No instante que detectamos um deal, membros Premium recebem notificacao no Telegram com todos os detalhes.",
-    step3t: "Voce reserva e economiza milhares",
-    step3d: "Reserve diretamente com a companhia aerea e economize em media R$4.200 por viagem. Sem intermediarios.",
+    step2d: "No instante que detectamos um deal, membros Premium recebem notifica\u00E7\u00E3o no Telegram com todos os detalhes.",
+    step3t: "Voc\u00EA reserva e economiza milhares",
+    step3d: "Reserve diretamente com a companhia a\u00E9rea e economize em m\u00E9dia R$4.200 por viagem. Sem intermedi\u00E1rios.",
 
     // Compare
-    compTitle: "Gratis Recebe os Deals de Ontem. Premium Recebe a Viagem de Amanha.",
-    compFree: "Gratis", compPrem: "Premium",
+    compTitle: "Gr\u00E1tis Recebe os Deals de Ontem. Premium Recebe a Viagem de Amanh\u00E3.",
+    compFree: "Gr\u00E1tis", compPrem: "Premium",
     comp1: "Deals nacionais", comp2: "Deals internacionais", comp3: "Error fares / Bugs de passagem",
-    comp4: "Alertas em tempo real", comp5: "Comunidade VIP", comp6: "Suporte prioritario",
+    comp4: "Alertas em tempo real", comp5: "Comunidade VIP", comp6: "Suporte priorit\u00E1rio",
     compDelay: "Com delay", compExclusivo: "Exclusivo",
 
     // Pricing
     pricingTitle: "Um Deal Paga 17 Anos de Premium",
-    pricingSub: "Error fare medio economiza R$4.200. Premium custa R$19,90/mes. Uma reserva cobre sua assinatura ate 2043.",
-    freeName: "Gratis", freePrice: "R$ 0",
-    freeF1: "1-2 alertas por dia", freeF2: "Canal publico do Telegram", freeF3: "Deals com delay de 6-12h", freeF4: "Sem error fares",
-    freeCta: "Entrar Gratis",
-    premName: "Premium", premPeriod: "/mes",
+    pricingSub: "Error fare m\u00E9dio economiza R$4.200. Premium custa R$19,90/m\u00EAs. Uma reserva cobre sua assinatura at\u00E9 2043.",
+    freeName: "Gr\u00E1tis", freePrice: "R$ 0",
+    freeF1: "1-2 alertas por dia", freeF2: "Canal p\u00FAblico do Telegram", freeF3: "Deals com delay de 6-12h", freeF4: "Sem error fares",
+    freeCta: "Entrar Gr\u00E1tis",
+    premName: "Premium", premPeriod: "/m\u00EAs",
     premF1: "Alertas em TEMPO REAL", premF2: "5-10 deals exclusivos/dia", premF3: "Error fares antes de todos",
-    premF4: "Precos na sua moeda", premF5: "Comunidade VIP", premF6: "Suporte prioritario",
+    premF4: "Pre\u00E7os na sua moeda", premF5: "Comunidade VIP", premF6: "Suporte priorit\u00E1rio",
     premCta: "Quero Meus Alertas!",
     premBadge: "Mais popular",
     premMicro: "Cancele quando quiser \u2022 Sem fidelidade \u2022 Se paga sozinho",
 
     // Testimonials
-    testTitle: "Quem Ja Economizou",
+    testTitle: "Quem J\u00E1 Economizou",
     test1name: "Marina Costa", test1route: "GRU \u2192 Lisboa, abr 2026", test1saved: "Economizou R$2.850",
-    test1quote: "Eu estava no onibus quando o alerta chegou. Reservei em 3 minutos no celular. Melhor R$19,90 que ja gastei na vida.",
+    test1quote: "Eu estava no \u00F4nibus quando o alerta chegou. Reservei em 3 minutos no celular. Melhor R$19,90 que j\u00E1 gastei na vida.",
     test2name: "Rafael Oliveira", test2route: "GIG \u2192 Paris, mar 2026", test2saved: "Economizou R$4.310",
-    test2quote: "Minha esposa nao acreditou quando mostrei a passagem. Paris ida e volta por R$1.890. Ela achou que era golpe ate embarcar.",
+    test2quote: "Minha esposa n\u00E3o acreditou quando mostrei a passagem. Paris ida e volta por R$1.890. Ela achou que era golpe at\u00E9 embarcar.",
     test3name: "Juliana Santos", test3route: "BSB \u2192 Tokyo, fev 2026", test3saved: "Economizou R$6.700",
-    test3quote: "Um deal pagou 28 anos de assinatura. Se voce viaja 1x por ano, nao tem como nao valer a pena.",
+    test3quote: "Um deal pagou 28 anos de assinatura. Se voc\u00EA viaja 1x por ano, n\u00E3o tem como n\u00E3o valer a pena.",
 
     // FAQ
     faqTitle: "Perguntas Frequentes",
-    faq1q: "Ja procuro passagens no Google Flights. Por que preciso disso?",
-    faq1a: "Google Flights mostra precos NORMAIS. A gente mostra precos ERRADOS \u2014 error fares que acontecem quando companhias publicam tarifas por uma fracao do valor real. Tipo Sao Paulo para Bali a R$3.999 em vez de R$12.000. Esses erros sao corrigidos em horas. Google Flights e uma lanterna. A gente e um radar.",
-    faq2q: "R$19,90/mes parece caro para algo que talvez eu nao use todo mes.",
-    faq2a: "R$19,90/mes = R$0,66/dia. Menos que um cafezinho. O deal medio economiza R$4.200. Mesmo reservando apenas UM deal por ANO, voce pagou R$238,80 para economizar R$4.200. Retorno de 17x. Sem contrato \u2014 cancele quando quiser.",
-    faq3q: "Como sei que os deals sao reais? E se a companhia cancelar?",
-    faq3a: "Error fares sao reservas 100% reais feitas diretamente com a companhia aerea \u2014 a gente so alerta sobre o preco. Mais de 85% sao honrados. Se cancelarem, reembolso TOTAL. Pior cenario? Reembolso gratuito. Melhor cenario? Bali por R$8.000 a menos.",
+    faq1q: "J\u00E1 procuro passagens no Google Flights. Por que preciso disso?",
+    faq1a: "Google Flights mostra pre\u00E7os NORMAIS. A gente mostra pre\u00E7os ERRADOS \u2014 error fares que acontecem quando companhias publicam tarifas por uma fra\u00E7\u00E3o do valor real. Tipo S\u00E3o Paulo para Bali a R$3.999 em vez de R$12.000. Esses erros s\u00E3o corrigidos em horas. Google Flights \u00E9 uma lanterna. A gente \u00E9 um radar.",
+    faq2q: "R$19,90/m\u00EAs parece caro para algo que talvez eu n\u00E3o use todo m\u00EAs.",
+    faq2a: "R$19,90/m\u00EAs = R$0,66/dia. Menos que um cafezinho. O deal m\u00E9dio economiza R$4.200. Mesmo reservando apenas UM deal por ANO, voc\u00EA pagou R$238,80 para economizar R$4.200. Retorno de 17x. Sem contrato \u2014 cancele quando quiser.",
+    faq3q: "Como sei que os deals s\u00E3o reais? E se a companhia cancelar?",
+    faq3a: "Error fares s\u00E3o reservas 100% reais feitas diretamente com a companhia a\u00E9rea \u2014 a gente s\u00F3 alerta sobre o pre\u00E7o. Mais de 85% s\u00E3o honrados. Se cancelarem, reembolso TOTAL. Pior cen\u00E1rio? Reembolso gratuito. Melhor cen\u00E1rio? Bali por R$8.000 a menos.",
     faq4q: "Posso cancelar quando quiser?",
-    faq4a: "Sim. Um clique. Sem multa. Sem ligacao. Sem contrato. Sem fidelidade. Imediato.",
-    faq5q: "Por que Telegram e nao email?",
-    faq5a: "Velocidade. Error fares duram horas, as vezes minutos. Email vai pro spam e voce ve 3 dias depois. Telegram entrega notificacao instantanea \u2014 seu celular vibra no segundo que o deal aparece.",
+    faq4a: "Sim. Um clique. Sem multa. Sem liga\u00E7\u00E3o. Sem contrato. Sem fidelidade. Imediato.",
+    faq5q: "Por que Telegram e n\u00E3o email?",
+    faq5a: "Velocidade. Error fares duram horas, \u00E0s vezes minutos. Email vai pro spam e voc\u00EA v\u00EA 3 dias depois. Telegram entrega notifica\u00E7\u00E3o instant\u00E2nea \u2014 seu celular vibra no segundo que o deal aparece.",
 
     // Final CTA
-    finalTitle: "Cada Dia Sem Premium e Um Deal Que Voce Perde.",
-    finalDesc: "Enquanto voce pensa, membros Premium estao reservando passagens por uma fracao do preco. Por R$0,66/dia, nunca mais pague caro em passagem.",
-    finalCta: "Comecar a Economizar Agora",
+    finalTitle: "Cada Dia Sem Premium \u00E9 Um Deal Que Voc\u00EA Perde.",
+    finalDesc: "Enquanto voc\u00EA pensa, membros Premium est\u00E3o reservando passagens por uma fra\u00E7\u00E3o do pre\u00E7o. Por R$0,66/dia, nunca mais pague caro em passagem.",
+    finalCta: "Come\u00E7ar a Economizar Agora",
     finalMicro: "Cancele quando quiser \u2022 Garantia de 30 dias \u2022 Se paga sozinho",
 
     // Footer
@@ -162,10 +162,10 @@ const PRICES = {
 // FOMO deals por pais (rotas reais, precos reais, cias reais)
 const FOMO_DEALS_BY_COUNTRY = {
   BR: [
-    { route: 'GRU \u2192 Paris (Air France, direto, 11h30)', original: 'R$ 5.200', deal: 'R$ 2.100', savings: '60% OFF', time: 'Expirou ha 47h' },
-    { route: 'GIG \u2192 Lisboa (TAP, direto, 9h45)', original: 'R$ 4.800', deal: 'R$ 1.650', savings: '66% OFF', time: 'Expirou ha 23h' },
-    { route: 'GRU \u2192 Dubai (Emirates, direto, 14h25)', original: 'R$ 5.500', deal: 'R$ 2.400', savings: '56% OFF', time: 'Expirou ha 5h' },
-    { route: 'GRU \u2192 Bangkok (Qatar, via Doha, 22h45)', original: 'R$ 6.800', deal: 'R$ 2.300', savings: '66% OFF', time: 'Expirou ha 12h' },
+    { route: 'GRU \u2192 Paris (Air France, direto, 11h30)', original: 'R$ 5.200', deal: 'R$ 2.100', savings: '60% OFF', time: 'Expirou h\u00E1 47h' },
+    { route: 'GIG \u2192 Lisboa (TAP, direto, 9h45)', original: 'R$ 4.800', deal: 'R$ 1.650', savings: '66% OFF', time: 'Expirou h\u00E1 23h' },
+    { route: 'GRU \u2192 Dubai (Emirates, direto, 14h25)', original: 'R$ 5.500', deal: 'R$ 2.400', savings: '56% OFF', time: 'Expirou h\u00E1 5h' },
+    { route: 'GRU \u2192 Bangkok (Qatar, via Doha, 22h45)', original: 'R$ 6.800', deal: 'R$ 2.300', savings: '66% OFF', time: 'Expirou h\u00E1 12h' },
   ],
   US: [
     { route: 'JFK \u2192 Paris (Air France, nonstop, 7h20)', original: '$890', deal: '$289', savings: '68% OFF', time: 'Expired 47h ago' },
