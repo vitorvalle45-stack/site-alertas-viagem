@@ -51,12 +51,12 @@ const TEXTS = {
 
     // Testimonials
     testTitle: "Quem J\u00E1 Economizou",
-    test1name: "Marina Costa", test1route: "GRU \u2192 Lisboa, abr 2026", test1saved: "Economizou R$2.850",
+    test1name: "\ud83c\udde7\ud83c\uddf7 Marina Costa", test1route: "GRU \u2192 Lisboa, abr 2026", test1saved: "Economizou R$2.850",
     test1quote: "Eu estava no \u00F4nibus quando o alerta chegou. Reservei em 3 minutos no celular. Melhor R$19,90 que j\u00E1 gastei na vida.",
-    test2name: "Rafael Oliveira", test2route: "GIG \u2192 Paris, mar 2026", test2saved: "Economizou R$4.310",
-    test2quote: "Minha esposa n\u00E3o acreditou quando mostrei a passagem. Paris ida e volta por R$1.890. Ela achou que era golpe at\u00E9 embarcar.",
-    test3name: "Juliana Santos", test3route: "BSB \u2192 Tokyo, fev 2026", test3saved: "Economizou R$6.700",
-    test3quote: "Um deal pagou 28 anos de assinatura. Se voc\u00EA viaja 1x por ano, n\u00E3o tem como n\u00E3o valer a pena.",
+    test2name: "\ud83c\uddf5\ud83c\uddf9 Tiago Ferreira", test2route: "LIS \u2192 S\u00E3o Paulo, mar 2026", test2saved: "Economizou \u20ac890",
+    test2quote: "Moro em Lisboa e achei voo pra visitar fam\u00EDlia no Brasil por \u20ac280 ida e volta. Normalmente pago \u20ac700+. Absurdo.",
+    test3name: "\ud83c\uddfa\ud83c\uddf8 Emily Sanders", test3route: "MIA \u2192 Rio, fev 2026", test3saved: "Economizou $1.950",
+    test3quote: "I found a Miami to Rio flight for $189 roundtrip. My Brazilian friends couldn't believe it. This service is insane.",
 
     // FAQ
     faqTitle: "Perguntas Frequentes",
@@ -117,12 +117,12 @@ const TEXTS = {
     premBadge: "Most popular",
     premMicro: "Cancel anytime \u2022 No commitment \u2022 Pays for itself",
     testTitle: "Members Who Saved",
-    test1name: "James Wilson", test1route: "JFK \u2192 Lisbon, Apr 2026", test1saved: "Saved $1,420",
-    test1quote: "I was on the subway when the alert came in. Booked in 3 minutes on my phone. Best $4.99 I've ever spent.",
-    test2name: "Sarah Chen", test2route: "LAX \u2192 Paris, Mar 2026", test2saved: "Saved $1,890",
-    test2quote: "My husband didn't believe me when I showed him the ticket. Paris roundtrip for $489. He thought it was a scam until we boarded.",
-    test3name: "David Park", test3route: "SFO \u2192 Tokyo, Feb 2026", test3saved: "Saved $2,400",
-    test3quote: "One deal paid for 40 years of subscription. If you fly once a year, there's no way this doesn't pay for itself.",
+    test1name: "\ud83c\uddfa\ud83c\uddf8 James Wilson", test1route: "JFK \u2192 London, Apr 2026", test1saved: "Saved $1,420",
+    test1quote: "Got a JFK to London alert at 6am. Business class for $680 roundtrip. Normally $4,200. Booked before my coffee was ready.",
+    test2name: "\ud83c\uddec\ud83c\udde7 Sophie Mitchell", test2route: "LHR \u2192 Tokyo, Mar 2026", test2saved: "Saved \u00a31,890",
+    test2quote: "Heathrow to Tokyo for \u00a3312 return. I literally screamed. My flatmate thought I'd gone mad. Best fiver I spend every month.",
+    test3name: "\ud83c\udde6\ud83c\uddfa David Nguyen", test3route: "SYD \u2192 Rome, Feb 2026", test3saved: "Saved A$3,100",
+    test3quote: "Sydney to Rome for A$490 roundtrip. One deal covered 34 years of subscription. If you travel at all, this is a no-brainer.",
     faqTitle: "Frequently Asked Questions",
     faq1q: "I already use Google Flights. Why do I need this?",
     faq1a: "Google Flights shows NORMAL prices. We show WRONG prices \u2014 error fares that happen when airlines accidentally publish fares at a fraction of the real value. Like New York to Bali for $799 instead of $2,400. These errors get fixed in hours. Google Flights is a flashlight. We're a radar.",
@@ -390,11 +390,16 @@ function applyAll(lang, currCode, country) {
 
   // Testimonials
   document.getElementById('test-title').textContent = t.testTitle;
+  const avatars = document.querySelectorAll('.test-avatar');
   for (let i = 1; i <= 3; i++) {
     document.getElementById(`t${i}name`).textContent = t[`test${i}name`];
     document.getElementById(`t${i}route`).textContent = t[`test${i}route`];
     document.getElementById(`t${i}saved`).textContent = t[`test${i}saved`];
     document.getElementById(`t${i}quote`).textContent = `"${t[`test${i}quote`]}"`;
+    // Update avatar letter from name (skip flag emoji)
+    const rawName = t[`test${i}name`];
+    const letterMatch = rawName.match(/[A-Za-z\u00C0-\u00FF]/);
+    if (avatars[i-1] && letterMatch) avatars[i-1].textContent = letterMatch[0].toUpperCase();
   }
 
   // FAQ
