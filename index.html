@@ -11,25 +11,35 @@
 </head>
 <body>
 
+  <!-- BG SLIDESHOW -->
+  <div class="bg-slideshow" id="bg-slideshow">
+    <div class="bg-slide active" style="background-image:url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&q=60')"></div>
+    <div class="bg-slide" style="background-image:url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=60')"></div>
+    <div class="bg-slide" style="background-image:url('https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=1200&q=60')"></div>
+    <div class="bg-slide" style="background-image:url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1200&q=60')"></div>
+    <div class="bg-slide" style="background-image:url('https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=1200&q=60')"></div>
+    <div class="bg-slide" style="background-image:url('https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=1200&q=60')"></div>
+  </div>
+
   <!-- FLOATING FLAGS LEFT -->
   <div class="floating-flags">
-    <span class="flag-float">&#x1F1E7;&#x1F1F7;</span>
-    <span class="flag-float">&#x1F1EC;&#x1F1E7;</span>
-    <span class="flag-float">&#x1F1E8;&#x1F1ED;</span>
-    <span class="flag-float">&#x1F1FA;&#x1F1F8;</span>
-    <span class="flag-float">&#x1F1E6;&#x1F1FA;</span>
-    <span class="flag-float">&#x1F1EF;&#x1F1F5;</span>
-    <span class="flag-float">&#x1F1E6;&#x1F1EA;</span>
+    <span class="flag-float" title="Brasil">&#x1F1E7;&#x1F1F7;</span>
+    <span class="flag-float" title="United Kingdom">&#x1F1EC;&#x1F1E7;</span>
+    <span class="flag-float" title="Switzerland">&#x1F1E8;&#x1F1ED;</span>
+    <span class="flag-float" title="United States">&#x1F1FA;&#x1F1F8;</span>
+    <span class="flag-float" title="Australia">&#x1F1E6;&#x1F1FA;</span>
+    <span class="flag-float" title="Japan">&#x1F1EF;&#x1F1F5;</span>
+    <span class="flag-float" title="UAE">&#x1F1E6;&#x1F1EA;</span>
   </div>
   <!-- FLOATING FLAGS RIGHT -->
   <div class="floating-flags-right">
-    <span class="flag-float">&#x1F1EB;&#x1F1F7;</span>
-    <span class="flag-float">&#x1F1EE;&#x1F1F9;</span>
-    <span class="flag-float">&#x1F1F0;&#x1F1F7;</span>
-    <span class="flag-float">&#x1F1E8;&#x1F1E6;</span>
-    <span class="flag-float">&#x1F1F2;&#x1F1FD;</span>
-    <span class="flag-float">&#x1F1E9;&#x1F1EA;</span>
-    <span class="flag-float">&#x1F1F3;&#x1F1F4;</span>
+    <span class="flag-float" title="France">&#x1F1EB;&#x1F1F7;</span>
+    <span class="flag-float" title="Italy">&#x1F1EE;&#x1F1F9;</span>
+    <span class="flag-float" title="South Korea">&#x1F1F0;&#x1F1F7;</span>
+    <span class="flag-float" title="Canada">&#x1F1E8;&#x1F1E6;</span>
+    <span class="flag-float" title="Mexico">&#x1F1F2;&#x1F1FD;</span>
+    <span class="flag-float" title="Germany">&#x1F1E9;&#x1F1EA;</span>
+    <span class="flag-float" title="Norway">&#x1F1F3;&#x1F1F4;</span>
   </div>
 
   <!-- PULSING CTA BUTTON (fixed) -->
@@ -232,5 +242,17 @@
   </footer>
 
   <script src="/js/i18n.js"></script>
+  <script>
+    // Background slideshow - muda a cada 15 segundos
+    (function() {
+      const slides = document.querySelectorAll('.bg-slide');
+      let current = 0;
+      setInterval(() => {
+        slides[current].classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+      }, 15000);
+    })();
+  </script>
 </body>
 </html>
