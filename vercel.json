@@ -1,0 +1,14 @@
+{
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    }
+  ],
+  "rewrites": [
+    { "source": "/checkout", "destination": "/pages/checkout.html" },
+    { "source": "/success", "destination": "/pages/success.html" }
+  ]
+}

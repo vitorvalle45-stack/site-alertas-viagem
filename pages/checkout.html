@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Travel Alerts Premium</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .checkout-page { padding: 120px 0 60px; min-height: 100vh; }
+    .checkout-container { max-width: 500px; margin: 0 auto; }
+    .checkout-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+    }
+    .checkout-card h2 { margin-bottom: 8px; }
+    .checkout-summary {
+      background: rgba(108, 60, 225, 0.1);
+      border: 1px solid rgba(108, 60, 225, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 24px 0;
+    }
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
+    .summary-row.total { font-size: 1.3rem; font-weight: 700; border-top: 1px solid var(--border); padding-top: 12px; margin-top: 12px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 0.9rem; }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    .form-group input:focus, .form-group select:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .secure-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 16px;
+    }
+    .included-list { margin: 24px 0; }
+    .included-list li {
+      padding: 8px 0;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+    }
+    .included-list li::before { content: '✓'; color: var(--success); font-weight: bold; }
+    .back-link { display: block; text-align: center; margin-top: 24px; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container header-inner">
+      <a href="/" class="logo">TravelAlerts</a>
+    </div>
+  </header>
+
+  <section class="checkout-page">
+    <div class="container checkout-container">
+      <div class="checkout-card">
+        <h2 id="ck-title">Premium Subscription</h2>
+        <p style="color: var(--text-muted)" id="ck-subtitle">Unlock all deals and error fares</p>
+
+        <div class="checkout-summary">
+          <div class="summary-row">
+            <span id="ck-plan">Premium Plan</span>
+            <span id="ck-plan-price">US$ 4.99/mo</span>
+          </div>
+          <div class="summary-row total">
+            <span id="ck-total-label">Total</span>
+            <span id="ck-total">US$ 4.99</span>
+          </div>
+        </div>
+
+        <ul class="included-list" id="ck-features">
+          <li id="ck-f1">Real-time alerts on Telegram</li>
+          <li id="ck-f2">5-10 exclusive deals per day</li>
+          <li id="ck-f3">Error fares before everyone</li>
+          <li id="ck-f4">VIP Community access</li>
+          <li id="ck-f5">Cancel anytime</li>
+        </ul>
+
+        <form id="checkout-form">
+          <div class="form-group">
+            <label id="ck-label-email">Email</label>
+            <input type="email" id="email" required placeholder="your@email.com">
+          </div>
+
+          <div class="form-group">
+            <label id="ck-label-telegram">Telegram Username</label>
+            <input type="text" id="telegram" required placeholder="@yourusername">
+          </div>
+
+          <div class="form-group">
+            <label id="ck-label-card">Card Number</label>
+            <input type="text" id="card" required placeholder="1234 5678 9012 3456" maxlength="19">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label id="ck-label-exp">Expiry</label>
+              <input type="text" id="expiry" required placeholder="MM/YY" maxlength="5">
+            </div>
+            <div class="form-group">
+              <label>CVC</label>
+              <input type="text" id="cvc" required placeholder="123" maxlength="4">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center" id="ck-submit">
+            Subscribe Now
+          </button>
+
+          <div class="secure-badge">
+            🔒 <span id="ck-secure">Secure payment powered by Stripe</span>
+          </div>
+        </form>
+
+        <a href="/" class="back-link" id="ck-back">← Back to homepage</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const CK_TEXTS = {
+      pt: {
+        title: 'Assinatura Premium',
+        subtitle: 'Desbloqueie todos os deals e error fares',
+        plan: 'Plano Premium',
+        totalLabel: 'Total',
+        f1: 'Alertas em tempo real no Telegram',
+        f2: '5-10 deals exclusivos por dia',
+        f3: 'Error fares antes de todos',
+        f4: 'Acesso a Comunidade VIP',
+        f5: 'Cancele quando quiser',
+        labelEmail: 'E-mail',
+        labelTelegram: 'Usuario do Telegram',
+        labelCard: 'Numero do cartao',
+        labelExp: 'Validade',
+        submit: 'Assinar Agora',
+        secure: 'Pagamento seguro via Stripe',
+        back: '← Voltar para a pagina inicial',
+      },
+      en: {
+        title: 'Premium Subscription',
+        subtitle: 'Unlock all deals and error fares',
+        plan: 'Premium Plan',
+        totalLabel: 'Total',
+        f1: 'Real-time alerts on Telegram',
+        f2: '5-10 exclusive deals per day',
+        f3: 'Error fares before everyone',
+        f4: 'VIP Community access',
+        f5: 'Cancel anytime',
+        labelEmail: 'Email',
+        labelTelegram: 'Telegram Username',
+        labelCard: 'Card Number',
+        labelExp: 'Expiry',
+        submit: 'Subscribe Now',
+        secure: 'Secure payment powered by Stripe',
+        back: '← Back to homepage',
+      }
+    };
+
+    const PRICES = {
+      BRL: { symbol: 'R$', amount: '19,90', period: '/mes' },
+      USD: { symbol: 'US$', amount: '4.99', period: '/mo' },
+      GBP: { symbol: '£', amount: '3.99', period: '/mo' },
+      EUR: { symbol: '€', amount: '4.49', period: '/mo' },
+      CHF: { symbol: 'CHF', amount: '4.99', period: '/mo' },
+      AUD: { symbol: 'A$', amount: '7.49', period: '/mo' },
+      AED: { symbol: 'AED', amount: '18.90', period: '/mo' },
+      JPY: { symbol: '¥', amount: '750', period: '/mo' },
+      KRW: { symbol: '₩', amount: '6,900', period: '/mo' },
+      CAD: { symbol: 'C$', amount: '6.49', period: '/mo' },
+      DKK: { symbol: 'DKK', amount: '34.90', period: '/mo' },
+      SEK: { symbol: 'SEK', amount: '52.90', period: '/mo' },
+      NOK: { symbol: 'NOK', amount: '54.90', period: '/mo' },
+      MXN: { symbol: 'MX$', amount: '89.90', period: '/mo' },
+    };
+
+    async function initCheckout() {
+      let lang = 'en', currencyCode = 'USD';
+      try {
+        const res = await fetch('/api/detect-country');
+        const data = await res.json();
+        lang = data.lang || 'en';
+        currencyCode = data.currency?.code || 'USD';
+      } catch {}
+
+      const t = CK_TEXTS[lang] || CK_TEXTS.en;
+      const p = PRICES[currencyCode] || PRICES.USD;
+      const per = lang === 'pt' ? '/mes' : '/mo';
+
+      document.getElementById('ck-title').textContent = t.title;
+      document.getElementById('ck-subtitle').textContent = t.subtitle;
+      document.getElementById('ck-plan').textContent = t.plan;
+      document.getElementById('ck-plan-price').textContent = `${p.symbol} ${p.amount}${per}`;
+      document.getElementById('ck-total-label').textContent = t.totalLabel;
+      document.getElementById('ck-total').textContent = `${p.symbol} ${p.amount}`;
+      document.getElementById('ck-f1').textContent = t.f1;
+      document.getElementById('ck-f2').textContent = t.f2;
+      document.getElementById('ck-f3').textContent = t.f3;
+      document.getElementById('ck-f4').textContent = t.f4;
+      document.getElementById('ck-f5').textContent = t.f5;
+      document.getElementById('ck-label-email').textContent = t.labelEmail;
+      document.getElementById('ck-label-telegram').textContent = t.labelTelegram;
+      document.getElementById('ck-label-card').textContent = t.labelCard;
+      document.getElementById('ck-label-exp').textContent = t.labelExp;
+      document.getElementById('ck-submit').textContent = t.submit;
+      document.getElementById('ck-secure').textContent = t.secure;
+      document.getElementById('ck-back').textContent = t.back;
+
+      // Card formatting
+      document.getElementById('card').addEventListener('input', function(e) {
+        let v = e.target.value.replace(/\D/g, '').substring(0, 16);
+        e.target.value = v.replace(/(.{4})/g, '$1 ').trim();
+      });
+
+      document.getElementById('expiry').addEventListener('input', function(e) {
+        let v = e.target.value.replace(/\D/g, '').substring(0, 4);
+        if (v.length >= 2) v = v.substring(0, 2) + '/' + v.substring(2);
+        e.target.value = v;
+      });
+
+      // Form submit
+      document.getElementById('checkout-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // TODO: Integrate with Stripe API
+        // For now, redirect to success page
+        const telegram = document.getElementById('telegram').value;
+        const email = document.getElementById('email').value;
+        window.location.href = `/success?telegram=${encodeURIComponent(telegram)}&email=${encodeURIComponent(email)}`;
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', initCheckout);
+  </script>
+</body>
+</html>

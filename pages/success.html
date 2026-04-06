@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome! - Travel Alerts Premium</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .success-page {
+      padding: 120px 0 60px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+    .success-container { max-width: 550px; margin: 0 auto; text-align: center; }
+    .success-card {
+      background: var(--bg-card);
+      border: 1px solid var(--success);
+      border-radius: 20px;
+      padding: 48px 40px;
+      box-shadow: 0 0 60px rgba(0, 214, 143, 0.1);
+    }
+    .success-icon { font-size: 4rem; margin-bottom: 16px; }
+    .success-card h1 { font-size: 2rem; margin-bottom: 12px; }
+    .success-card p { color: var(--text-muted); margin-bottom: 32px; font-size: 1.1rem; }
+    .steps { text-align: left; margin: 32px 0; }
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    .step-num {
+      background: var(--primary);
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .step-text h3 { font-size: 1rem; margin-bottom: 4px; }
+    .step-text p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
+    .action-buttons { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container header-inner">
+      <a href="/" class="logo">TravelAlerts</a>
+    </div>
+  </header>
+
+  <section class="success-page">
+    <div class="container success-container">
+      <div class="success-card">
+        <div class="success-icon">🎉</div>
+        <h1 id="s-title">Welcome to Premium!</h1>
+        <p id="s-desc">Your subscription is active. Here's how to get started:</p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-text">
+              <h3 id="s-step1t">Open the bot on Telegram</h3>
+              <p id="s-step1d">Click the button below to start the bot.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-text">
+              <h3 id="s-step2t">Choose your region</h3>
+              <p id="s-step2d">Send /start and select your country for localized prices.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-text">
+              <h3 id="s-step3t">Join the VIP Community</h3>
+              <p id="s-step3d">Exclusive group with extra deals and tips from other members.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <a href="https://t.me/alertas_viagem_br_bot" target="_blank" class="btn btn-primary" id="s-btn-bot">
+            🤖 Open Bot on Telegram
+          </a>
+          <a href="https://t.me/passagensbaratasb" target="_blank" class="btn btn-secondary" id="s-btn-community">
+            👥 Join VIP Community
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const S_TEXTS = {
+      pt: {
+        title: 'Bem-vindo ao Premium!',
+        desc: 'Sua assinatura esta ativa. Veja como comecar:',
+        step1t: 'Abra o bot no Telegram',
+        step1d: 'Clique no botao abaixo para iniciar o bot.',
+        step2t: 'Escolha sua regiao',
+        step2d: 'Envie /start e selecione seu pais para precos localizados.',
+        step3t: 'Entre na Comunidade VIP',
+        step3d: 'Grupo exclusivo com deals extras e dicas de outros membros.',
+        btnBot: '🤖 Abrir Bot no Telegram',
+        btnComm: '👥 Entrar na Comunidade VIP',
+      },
+      en: {
+        title: 'Welcome to Premium!',
+        desc: 'Your subscription is active. Here\'s how to get started:',
+        step1t: 'Open the bot on Telegram',
+        step1d: 'Click the button below to start the bot.',
+        step2t: 'Choose your region',
+        step2d: 'Send /start and select your country for localized prices.',
+        step3t: 'Join the VIP Community',
+        step3d: 'Exclusive group with extra deals and tips from other members.',
+        btnBot: '🤖 Open Bot on Telegram',
+        btnComm: '👥 Join VIP Community',
+      }
+    };
+
+    async function initSuccess() {
+      let lang = 'en';
+      try {
+        const res = await fetch('/api/detect-country');
+        const data = await res.json();
+        lang = data.lang || 'en';
+      } catch {}
+
+      const t = S_TEXTS[lang] || S_TEXTS.en;
+      document.getElementById('s-title').textContent = t.title;
+      document.getElementById('s-desc').textContent = t.desc;
+      document.getElementById('s-step1t').textContent = t.step1t;
+      document.getElementById('s-step1d').textContent = t.step1d;
+      document.getElementById('s-step2t').textContent = t.step2t;
+      document.getElementById('s-step2d').textContent = t.step2d;
+      document.getElementById('s-step3t').textContent = t.step3t;
+      document.getElementById('s-step3d').textContent = t.step3d;
+      document.getElementById('s-btn-bot').textContent = t.btnBot;
+      document.getElementById('s-btn-community').textContent = t.btnComm;
+    }
+
+    document.addEventListener('DOMContentLoaded', initSuccess);
+  </script>
+</body>
+</html>

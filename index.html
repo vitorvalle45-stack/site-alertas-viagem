@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Alerts Bot - Cheap Flights & Error Fares</title>
+  <meta name="description" content="Get instant alerts for error fares and insane flight deals. Save up to 90% on international flights.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container header-inner">
+      <div class="logo">TravelAlerts</div>
+      <nav class="nav-links">
+        <a href="#features" id="nav-how">How it works</a>
+        <a href="#pricing" id="nav-pricing">Pricing</a>
+        <a href="#examples" id="nav-deals">Deals</a>
+        <span class="lang-badge" id="lang-badge">🌍 EN</span>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <span class="hero-badge" id="hero-tag">Real-time alerts</span>
+      <h1 id="hero-title">Flights up to <span>90% OFF</span></h1>
+      <p id="hero-desc">Get instant alerts for error fares and insane flight deals straight to your Telegram.</p>
+      <div class="hero-buttons">
+        <a href="#pricing" class="btn btn-primary" id="btn-premium">Go Premium</a>
+        <a href="https://t.me/passagensbaratasb" target="_blank" class="btn btn-secondary" id="btn-free">Start Free</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="container">
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-number">5,000+</div>
+        <div class="stat-label" id="stat1-label">Deals sent</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">14</div>
+        <div class="stat-label" id="stat2-label">Countries</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">72%</div>
+        <div class="stat-label" id="stat3-label">Avg. savings</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">30+</div>
+        <div class="stat-label" id="stat4-label">Error fares/mo</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="container">
+      <h2 id="feat-title">How it works</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🤖</div>
+          <h3 id="feat1t">24/7 Monitoring</h3>
+          <p id="feat1d">Our bots monitor dozens of sources in real time.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3 id="feat2t">Instant Alerts</h3>
+          <p id="feat2d">Get notifications straight to Telegram.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💱</div>
+          <h3 id="feat3t">Your Currency</h3>
+          <p id="feat3d">Prices in your local currency.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💰</div>
+          <h3 id="feat4t">Real Savings</h3>
+          <p id="feat4d">Save 60-85% on average.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👥</div>
+          <h3 id="feat5t">VIP Community</h3>
+          <p id="feat5d">Exclusive group for members.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3 id="feat6t">Dedicated Support</h3>
+          <p id="feat6d">We help you book the deal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEAL EXAMPLES -->
+  <section class="examples" id="examples">
+    <div class="container">
+      <h2 id="ex-title">Real deals from the past days</h2>
+      <div id="deal-examples"></div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <h2 id="pricing-title">Plans</h2>
+      <p class="subtitle" id="pricing-sub">One cheap flight pays for a whole year.</p>
+      <div class="pricing-grid">
+        <!-- FREE -->
+        <div class="price-card">
+          <h3 id="free-name">Free</h3>
+          <div class="price" id="free-price">$0</div>
+          <ul class="price-features free-features">
+            <li>1-2 alerts per day</li>
+            <li>Public Telegram channel</li>
+            <li>Deals with 1-2h delay</li>
+            <li>Prices in USD</li>
+          </ul>
+          <a href="https://t.me/passagensbaratasb" target="_blank" class="btn btn-secondary" id="free-cta">Join Free</a>
+        </div>
+        <!-- PREMIUM -->
+        <div class="price-card popular">
+          <span class="popular-badge" id="prem-badge">Most popular</span>
+          <h3 id="prem-name">Premium</h3>
+          <div class="price" id="prem-price">$4.99<small>/mo</small></div>
+          <ul class="price-features prem-features">
+            <li>REAL-TIME alerts</li>
+            <li>5-10 exclusive deals/day</li>
+            <li>Error fares before everyone</li>
+            <li>Any currency worldwide</li>
+            <li>VIP Community</li>
+            <li>Priority support</li>
+          </ul>
+          <a href="/checkout" class="btn btn-primary" id="prem-cta">Subscribe Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p id="footer-text">&copy; 2026 Travel Alerts Bot. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/i18n.js"></script>
+</body>
+</html>
