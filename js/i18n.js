@@ -161,35 +161,35 @@ const PRICES = {
 
 const FOMO_DEALS = {
   pt: [
-    { route: 'Sao Paulo \u2192 Bali', original: 'R$ 12.000', deal: 'R$ 3.999', savings: '67% OFF', time: 'Expirou ha 47h' },
-    { route: 'Rio \u2192 Paris', original: 'R$ 6.200', deal: 'R$ 1.890', savings: '70% OFF', time: 'Expirou ha 23h' },
-    { route: 'Guarulhos \u2192 Dubai', original: 'R$ 8.500', deal: 'R$ 2.400', savings: '72% OFF', time: 'Expirou ha 5h' },
-    { route: 'Brasilia \u2192 Tokyo', original: 'R$ 9.500', deal: 'R$ 2.800', savings: '71% OFF', time: 'Expirou ha 12h' },
+    { route: 'GRU \u2192 Paris (Air France, direto, 11h30)', original: 'R$ 5.200', deal: 'R$ 2.100', savings: '60% OFF', time: 'Expirou ha 47h' },
+    { route: 'GIG \u2192 Lisboa (TAP, direto, 9h45)', original: 'R$ 4.800', deal: 'R$ 1.650', savings: '66% OFF', time: 'Expirou ha 23h' },
+    { route: 'GRU \u2192 Dubai (Emirates, direto, 14h25)', original: 'R$ 5.500', deal: 'R$ 2.400', savings: '56% OFF', time: 'Expirou ha 5h' },
+    { route: 'GRU \u2192 Bangkok (Qatar, via Doha, 22h45)', original: 'R$ 6.800', deal: 'R$ 2.300', savings: '66% OFF', time: 'Expirou ha 12h' },
   ],
   en: [
-    { route: 'New York \u2192 Bali', original: '$2,400', deal: '$799', savings: '67% OFF', time: 'Expired 47h ago' },
-    { route: 'London \u2192 Tokyo', original: '\u00A31,200', deal: '\u00A3380', savings: '68% OFF', time: 'Expired 23h ago' },
-    { route: 'Sydney \u2192 Dubai', original: 'A$1,800', deal: 'A$490', savings: '73% OFF', time: 'Expired 5h ago' },
-    { route: 'LA \u2192 Paris', original: '$1,100', deal: '$289', savings: '74% OFF', time: 'Expired 12h ago' },
+    { route: 'JFK \u2192 Paris (Air France, nonstop, 7h20)', original: '$890', deal: '$289', savings: '68% OFF', time: 'Expired 47h ago' },
+    { route: 'LHR \u2192 Tokyo (JAL, via Helsinki, 14h)', original: '\u00A31,200', deal: '\u00A3380', savings: '68% OFF', time: 'Expired 23h ago' },
+    { route: 'SYD \u2192 Bali (Jetstar, direct, 6h15)', original: 'A$850', deal: 'A$190', savings: '78% OFF', time: 'Expired 5h ago' },
+    { route: 'LAX \u2192 Rome (ITA Airways, nonstop, 12h)', original: '$1,100', deal: '$310', savings: '72% OFF', time: 'Expired 12h ago' },
   ],
 };
 
 const DEST_DEALS = {
   pt: [
-    { img: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80', route: 'Sao Paulo \u2192 Paris', original: 'R$ 6.200', deal: 'R$ 1.890', tag: 'ERROR FARE' },
-    { img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=600&q=80', route: 'Rio \u2192 Dubai', original: 'R$ 8.500', deal: 'R$ 2.400', tag: 'BUG' },
-    { img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80', route: 'GRU \u2192 Bali', original: 'R$ 12.000', deal: 'R$ 3.999', tag: 'ERROR FARE' },
-    { img: 'https://images.unsplash.com/photo-1485738422979-f5c462d49f04?w=600&q=80', route: 'BSB \u2192 Nova York', original: 'R$ 4.800', deal: 'R$ 1.200', tag: 'PROMO' },
-    { img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=600&q=80', route: 'GRU \u2192 Roma', original: 'R$ 5.900', deal: 'R$ 1.650', tag: 'ERROR FARE' },
-    { img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&q=80', route: 'Rio \u2192 Bangkok', original: 'R$ 7.200', deal: 'R$ 2.100', tag: 'BUG' },
+    { img: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80', route: 'GRU \u2192 Paris', sub: 'Air France \u2022 Direto \u2022 11h30', original: 'R$ 5.200', deal: 'R$ 2.100', tag: 'ERROR FARE' },
+    { img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=600&q=80', route: 'GRU \u2192 Dubai', sub: 'Emirates \u2022 Direto \u2022 14h25', original: 'R$ 5.500', deal: 'R$ 2.400', tag: 'BUG' },
+    { img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80', route: 'GRU \u2192 Bali', sub: 'Qatar Airways \u2022 Via Doha \u2022 26h', original: 'R$ 7.500', deal: 'R$ 3.999', tag: 'ERROR FARE' },
+    { img: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&q=80', route: 'GRU \u2192 Miami', sub: 'LATAM \u2022 Direto \u2022 8h30', original: 'R$ 3.200', deal: 'R$ 1.200', tag: 'PROMO' },
+    { img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=600&q=80', route: 'GRU \u2192 Roma', sub: 'ITA Airways \u2022 Direto \u2022 11h', original: 'R$ 4.900', deal: 'R$ 1.650', tag: 'ERROR FARE' },
+    { img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&q=80', route: 'GRU \u2192 Bangkok', sub: 'Emirates \u2022 Via Dubai \u2022 22h', original: 'R$ 6.800', deal: 'R$ 2.300', tag: 'BUG' },
   ],
   en: [
-    { img: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80', route: 'NYC \u2192 Paris', original: '$890', deal: '$289', tag: 'ERROR FARE' },
-    { img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=600&q=80', route: 'London \u2192 Dubai', original: '\u00A3850', deal: '\u00A3220', tag: 'MISTAKE' },
-    { img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80', route: 'LA \u2192 Bali', original: '$2,400', deal: '$799', tag: 'ERROR FARE' },
-    { img: 'https://images.unsplash.com/photo-1485738422979-f5c462d49f04?w=600&q=80', route: 'Chicago \u2192 New York', original: '$380', deal: '$49', tag: 'DEAL' },
-    { img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=600&q=80', route: 'Sydney \u2192 Rome', original: 'A$2,100', deal: 'A$650', tag: 'ERROR FARE' },
-    { img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&q=80', route: 'NYC \u2192 Bangkok', original: '$1,200', deal: '$389', tag: 'MISTAKE' },
+    { img: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80', route: 'JFK \u2192 Paris', sub: 'Air France \u2022 Nonstop \u2022 7h20', original: '$890', deal: '$289', tag: 'ERROR FARE' },
+    { img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=600&q=80', route: 'LHR \u2192 Dubai', sub: 'Emirates \u2022 Nonstop \u2022 7h', original: '\u00A3650', deal: '\u00A3220', tag: 'MISTAKE' },
+    { img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80', route: 'LAX \u2192 Bali', sub: 'Cathay Pacific \u2022 Via HKG \u2022 20h', original: '$2,400', deal: '$799', tag: 'ERROR FARE' },
+    { img: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&q=80', route: 'JFK \u2192 Miami', sub: 'JetBlue \u2022 Nonstop \u2022 3h', original: '$380', deal: '$49', tag: 'DEAL' },
+    { img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=600&q=80', route: 'SYD \u2192 Rome', sub: 'Qatar \u2022 Via Doha \u2022 22h', original: 'A$2,100', deal: 'A$650', tag: 'ERROR FARE' },
+    { img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&q=80', route: 'JFK \u2192 Bangkok', sub: 'Turkish \u2022 Via Istanbul \u2022 19h', original: '$1,200', deal: '$389', tag: 'MISTAKE' },
   ],
 };
 
@@ -247,6 +247,7 @@ function applyAll(lang, currCode) {
       <img class="dest-img" src="${d.img}" alt="${d.route}" loading="lazy">
       <div class="dest-info">
         <div class="dest-route">\u2708\uFE0F ${d.route}</div>
+        ${d.sub ? `<div style="color:#64748B;font-size:0.8rem;margin-bottom:8px">${d.sub}</div>` : ''}
         <div class="dest-price-row">
           <span class="dest-original">${d.original}</span>
           <span class="dest-deal">${d.deal}</span>
