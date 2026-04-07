@@ -30,7 +30,7 @@ a { color: var(--turquoise); text-decoration: none; }
 /* === HEADER === */
 header {
   padding: 16px 0; position: fixed; width: 100%; top: 0; z-index: 100;
-  background: rgba(10,10,15,0.95); backdrop-filter: blur(12px);
+  background: rgba(10,10,15,0.95); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
 .header-inner { display: flex; justify-content: space-between; align-items: center; }
@@ -51,7 +51,9 @@ header {
 .lang-badge {
   background: rgba(255,255,255,0.08); border: 1px solid var(--border);
   padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; color: #fff; cursor: pointer;
+  transition: all 0.3s;
 }
+.lang-badge:hover { background: rgba(255,255,255,0.15); border-color: var(--gold); color: var(--gold); }
 
 /* === FLOATING FLAGS === */
 .floating-flags {
@@ -110,7 +112,7 @@ header {
   box-shadow: 0 6px 30px rgba(212,168,67,0.3);
 }
 .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(212,168,67,0.4); }
-.btn-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.2); }
+.btn-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.2); transition: all 0.3s; }
 .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
 .btn-success { background: var(--success); color: #fff; }
 
@@ -124,7 +126,7 @@ header {
   animation: pulse 2s ease-in-out infinite;
 }
 .pulsing-cta::before {
-  content: ''; position: absolute; inset: -4px; border-radius: 54px;
+  content: ''; position: absolute; top: -4px; left: -4px; right: -4px; bottom: -4px; border-radius: 54px;
   background: linear-gradient(135deg, var(--gold), #C4943A); opacity: 0.3;
   animation: pulseRing 2s ease-in-out infinite; z-index: -1;
 }
@@ -220,7 +222,7 @@ header {
 
 /* === COMPARE TABLE === */
 .compare { padding: 70px 0; }
-.compare h2 { text-align: center; font-size: 1.8rem; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto; }
+.compare h2 { text-align: center; font-size: 2rem; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto; }
 .compare-table {
   max-width: 700px; margin: 0 auto; border-radius: 16px; overflow: hidden;
   border: 1px solid var(--border); background: var(--bg-card);
@@ -299,7 +301,9 @@ header {
 .faq-q {
   padding: 18px 24px; font-weight: 600; cursor: pointer;
   display: flex; justify-content: space-between; align-items: center;
+  transition: color 0.3s;
 }
+.faq-q:hover { color: var(--gold); }
 .faq-q::after { content: '+'; font-size: 1.4rem; color: var(--text-muted); transition: transform 0.3s; }
 .faq-item.open .faq-q::after { transform: rotate(45deg); }
 .faq-a { padding: 0 24px 18px; color: var(--text-muted); font-size: 0.95rem; display: none; }
@@ -416,4 +420,8 @@ footer {
   .floating-flags, .floating-flags-right { display: none; }
   .pulsing-cta { font-size: 0.85rem; padding: 12px 20px; bottom: 16px; right: 16px; }
   .deal-slide { width: 260px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
