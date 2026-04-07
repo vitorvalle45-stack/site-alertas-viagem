@@ -318,6 +318,79 @@ header {
 }
 .bg-slide.active { opacity: 0.06; }
 
+/* === LOGO TRANSITION FREE → PREMIUM === */
+.logo-transition-wrapper {
+  display: flex; flex-direction: column; align-items: center;
+  margin: 0 auto 48px; gap: 16px;
+}
+.logo-transition {
+  position: relative; width: 120px; height: 120px;
+}
+.logo-circle {
+  position: absolute; inset: 0; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 1.5s ease;
+}
+.logo-free {
+  background: linear-gradient(135deg, #87CEEB 0%, #F4978E 100%);
+  border: 3px solid rgba(255,255,255,0.5);
+  animation: logoSwap 6s ease-in-out infinite;
+}
+.logo-premium {
+  background: linear-gradient(135deg, #1a1a2e 0%, #D4A843 100%);
+  border: 3px solid var(--gold);
+  opacity: 0;
+  animation: logoSwapPremium 6s ease-in-out infinite;
+  box-shadow: 0 0 30px rgba(212,168,67,0.4);
+}
+.logo-icon {
+  font-size: 2.8rem; color: white;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+.logo-crown {
+  position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+  font-size: 1.4rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+.logo-transition-text {
+  display: flex; align-items: center; gap: 12px; font-size: 1.1rem; font-weight: 700;
+}
+.lt-free {
+  color: var(--text-muted); animation: ltFreeText 6s ease-in-out infinite;
+}
+.lt-arrow {
+  color: var(--gold); font-size: 1.4rem; animation: ltArrow 6s ease-in-out infinite;
+}
+.lt-premium {
+  color: var(--gold); animation: ltPremText 6s ease-in-out infinite;
+}
+
+@keyframes logoSwap {
+  0%, 40% { opacity: 1; transform: scale(1); }
+  50%, 90% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes logoSwapPremium {
+  0%, 40% { opacity: 0; transform: scale(0.8); }
+  50%, 90% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0; transform: scale(0.8); }
+}
+@keyframes ltFreeText {
+  0%, 40% { opacity: 1; color: #87CEEB; }
+  50%, 90% { opacity: 0.4; color: var(--text-muted); }
+  100% { opacity: 1; color: #87CEEB; }
+}
+@keyframes ltPremText {
+  0%, 40% { opacity: 0.4; color: var(--text-muted); }
+  50%, 90% { opacity: 1; color: var(--gold); text-shadow: 0 0 10px rgba(212,168,67,0.5); }
+  100% { opacity: 0.4; color: var(--text-muted); }
+}
+@keyframes ltArrow {
+  0%, 45% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+  55%, 100% { transform: translateX(0); }
+}
+
 /* === FOOTER === */
 footer {
   padding: 40px 0; border-top: 1px solid var(--border);
