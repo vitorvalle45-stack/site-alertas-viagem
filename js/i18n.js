@@ -911,18 +911,11 @@ function setLang(lang, curr) {
   applyAll(lang, currentCurr, currentCountry);
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-  const data = await detectCountry();
-  currentCountry = data.country || 'US';
-  currentCurr = data.currency?.code || 'USD';
-  // Auto-detect language from country
-  currentLang = COUNTRY_TO_LANG_MAP[currentCountry] || data.lang || 'en';
-  // If language doesn't exist in TEXTS, fallback to en
-  if (!TEXTS[currentLang]) currentLang = 'en';
-  setLang(currentLang, currentCurr);
+document.addEventListener('DOMContentLoaded', () => {
+  // Register ALL event listeners FIRST (before async operations)
+  const selector = document.getElementById('lang-selector');
 
   // Dropdown toggle
-  const selector = document.getElementById('lang-selector');
   document.getElementById('lang-selected').addEventListener('click', (e) => {
     e.stopPropagation();
     selector.classList.toggle('open');
@@ -934,7 +927,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       e.stopPropagation();
       const lang = opt.dataset.lang;
       const curr = opt.dataset.curr;
-      // Update country group based on language for deals
       const langToCountry = { pt:'BR', en:'US', es:'EU', fr:'EU', de:'EU', it:'EU', ru:'US', ja:'JP', ko:'KR', ar:'AE' };
       currentCountry = langToCountry[lang] || 'US';
       setLang(lang, curr);
@@ -949,4 +941,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.querySelectorAll('.faq-q').forEach(q => {
     q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
   });
+
+  // NOW do async country detection and initial render
+  (async () => {
+    try {
+      const data = await detectCountry();
+      currentCountry = data.country || 'US';
+      currentCurr = data.currency?.code || 'USD';
+      currentLang = COUNTRY_TO_LANG_MAP[currentCountry] || data.lang || 'en';
+      if (!TEXTS[currentLang]) currentLang = 'en';
+    } catch {
+      currentCountry = 'US';
+      currentCurr = 'USD';
+      currentLang = 'en';
+    }
+    setLang(currentLang, currentCurr);
+  })();
 });
