@@ -1,6 +1,28 @@
+const rateLimit = {};
+
 export default function handler(req, res) {
   if (req.method !== 'GET') {
+    res.setHeader('Allow', 'GET');
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // Rate limiting: 30 requests/minute per IP
+  const ip = req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || 'unknown';
+  const now = Date.now();
+  if (rateLimit[ip] && rateLimit[ip].count >= 30 && now - rateLimit[ip].start < 60000) {
+    return res.status(429).json({ error: 'Too many requests' });
+  }
+  if (!rateLimit[ip] || now - rateLimit[ip].start >= 60000) {
+    rateLimit[ip] = { count: 1, start: now };
+  } else {
+    rateLimit[ip].count++;
+  }
+
+  // Clean old entries every 100 requests to prevent memory leak
+  if (Object.keys(rateLimit).length > 1000) {
+    for (const key in rateLimit) {
+      if (now - rateLimit[key].start > 120000) delete rateLimit[key];
+    }
   }
 
   const country = req.headers['x-vercel-ip-country'] || 'US';
@@ -46,5 +68,7 @@ export default function handler(req, res) {
 
   const lang = COUNTRY_TO_LANG[country] || 'en';
 
+  // Cache for 1 hour at edge, serve stale while revalidating
+  res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
   res.status(200).json({ country, city, lang, currency });
 }

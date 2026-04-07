@@ -777,7 +777,7 @@ function applyAll(lang, currCode, country) {
   document.getElementById('carousel-track').innerHTML = allDests.map(d => `
     <div class="deal-slide">
       <span class="deal-slide-tag">${d.tag}</span>
-      <img src="${d.img}" alt="${d.route}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&q=80';this.onerror=null">
+      <img src="${d.img}" alt="${d.route}" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#16213e)';this.style.objectFit='contain';this.alt='Deal';this.onerror=null">
       <div class="deal-slide-info">
         <div class="deal-slide-route">\u2708\uFE0F ${d.route}</div>
         ${d.sub ? `<div class="deal-slide-sub">${d.sub}</div>` : ''}

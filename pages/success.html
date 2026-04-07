@@ -46,6 +46,14 @@
     .step-text h3 { font-size: 1rem; margin-bottom: 4px; }
     .step-text p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
     .action-buttons { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; }
+    .blocked-card {
+      background: var(--bg-card);
+      border: 1px solid var(--urgent);
+      border-radius: 20px;
+      padding: 48px 40px;
+      box-shadow: 0 0 60px rgba(239, 68, 68, 0.1);
+    }
+    .blocked-card h1 { color: var(--urgent); }
   </style>
 </head>
 <body>
@@ -58,7 +66,15 @@
 
   <section class="success-page">
     <div class="container success-container">
-      <div class="success-card">
+      <!-- Blocked state (shown by default, hidden after verification) -->
+      <div class="blocked-card" id="blocked-view">
+        <div class="success-icon">🔒</div>
+        <h1 id="b-title">Verifying payment...</h1>
+        <p id="b-desc">Please wait while we confirm your subscription.</p>
+      </div>
+
+      <!-- Success state (hidden by default, shown after verification) -->
+      <div class="success-card" id="success-view" style="display:none">
         <div class="success-icon">🎉</div>
         <h1 id="s-title">Welcome to Premium!</h1>
         <p id="s-desc">Your subscription is active. Here's how to get started:</p>
@@ -88,7 +104,7 @@
         </div>
 
         <div class="action-buttons">
-          <a href="https://t.me/alertas_viagem_br_bot" target="_blank" class="btn btn-cta" id="s-btn-bot">
+          <a href="#" target="_blank" class="btn btn-cta" id="s-btn-bot">
             🤖 Open Bot on Telegram
           </a>
           <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px;">
@@ -110,8 +126,12 @@
         step2d: 'Envie /start e selecione seu pa\u00EDs para pre\u00E7os localizados.',
         step3t: 'Entre na Comunidade VIP',
         step3d: 'Grupo exclusivo com deals extras e dicas de outros membros.',
-        btnBot: '🤖 Abrir Bot no Telegram',
-        btnComm: '\ud83d\udc51 Entrar no Canal Premium',
+        btnBot: '\uD83E\uDD16 Abrir Bot no Telegram',
+        blockedTitle: 'Verificando pagamento...',
+        blockedDesc: 'Aguarde enquanto confirmamos sua assinatura.',
+        deniedTitle: 'Acesso negado',
+        deniedDesc: 'Nenhum pagamento encontrado. Fa\u00E7a sua assinatura primeiro.',
+        deniedBtn: 'Assinar Premium',
       },
       en: {
         title: 'Welcome to Premium!',
@@ -122,8 +142,12 @@
         step2d: 'Send /start and select your country for localized prices.',
         step3t: 'Join the VIP Community',
         step3d: 'Exclusive group with extra deals and tips from other members.',
-        btnBot: '🤖 Open Bot on Telegram',
-        btnComm: '\ud83d\udc51 Join Premium Channel',
+        btnBot: '\uD83E\uDD16 Open Bot on Telegram',
+        blockedTitle: 'Verifying payment...',
+        blockedDesc: 'Please wait while we confirm your subscription.',
+        deniedTitle: 'Access denied',
+        deniedDesc: 'No payment found. Please subscribe first.',
+        deniedBtn: 'Subscribe to Premium',
       }
     };
 
@@ -136,6 +160,29 @@
       } catch {}
 
       const t = S_TEXTS[lang] || S_TEXTS.en;
+
+      // Check for Stripe session_id in URL
+      const params = new URLSearchParams(window.location.search);
+      const sessionId = params.get('session_id');
+
+      if (!sessionId) {
+        // No session_id = not coming from Stripe checkout
+        document.getElementById('b-title').textContent = t.deniedTitle;
+        document.getElementById('b-desc').textContent = t.deniedDesc;
+        document.querySelector('.blocked-card').innerHTML = `
+          <div class="success-icon">\uD83D\uDD12</div>
+          <h1 style="color: var(--urgent)">${t.deniedTitle}</h1>
+          <p style="color: var(--text-muted); margin-bottom: 32px;">${t.deniedDesc}</p>
+          <a href="/#pricing" class="btn btn-cta">${t.deniedBtn}</a>
+        `;
+        return;
+      }
+
+      // Has session_id — show success content
+      // NOTE: Full server-side verification requires Stripe secret key (future webhook implementation)
+      document.getElementById('blocked-view').style.display = 'none';
+      document.getElementById('success-view').style.display = 'block';
+
       document.getElementById('s-title').textContent = t.title;
       document.getElementById('s-desc').textContent = t.desc;
       document.getElementById('s-step1t').textContent = t.step1t;
@@ -145,6 +192,8 @@
       document.getElementById('s-step3t').textContent = t.step3t;
       document.getElementById('s-step3d').textContent = t.step3d;
       document.getElementById('s-btn-bot').textContent = t.btnBot;
+      // Bot link only revealed after session_id check
+      document.getElementById('s-btn-bot').href = 'https://t.me/alertas_viagem_br_bot';
     }
 
     document.addEventListener('DOMContentLoaded', initSuccess);
