@@ -143,20 +143,20 @@ const TEXTS = {
 };
 
 const PRICES = {
-  BRL: { symbol: 'R$', premium: '19,90' },
-  USD: { symbol: 'US$', premium: '4.99' },
-  GBP: { symbol: '\u00A3', premium: '3.99' },
-  EUR: { symbol: '\u20AC', premium: '4.49' },
-  CHF: { symbol: 'CHF', premium: '4.99' },
-  AUD: { symbol: 'A$', premium: '7.49' },
-  AED: { symbol: 'AED', premium: '18.90' },
-  JPY: { symbol: '\u00A5', premium: '750' },
-  KRW: { symbol: '\u20A9', premium: '6,900' },
-  CAD: { symbol: 'C$', premium: '6.49' },
-  DKK: { symbol: 'DKK', premium: '34.90' },
-  SEK: { symbol: 'SEK', premium: '52.90' },
-  NOK: { symbol: 'NOK', premium: '54.90' },
-  MXN: { symbol: 'MX$', premium: '89.90' },
+  BRL: { symbol: 'R$', premium: '19,90', link: 'STRIPE_LINK_BRL' },
+  USD: { symbol: 'US$', premium: '4.99', link: 'STRIPE_LINK_USD' },
+  GBP: { symbol: '\u00A3', premium: '3.99', link: 'STRIPE_LINK_GBP' },
+  EUR: { symbol: '\u20AC', premium: '4.99', link: 'STRIPE_LINK_EUR' },
+  CHF: { symbol: 'CHF', premium: '4.99', link: 'STRIPE_LINK_CHF' },
+  AUD: { symbol: 'A$', premium: '7.99', link: 'STRIPE_LINK_AUD' },
+  AED: { symbol: 'AED', premium: '18.90', link: 'STRIPE_LINK_AED' },
+  JPY: { symbol: '\u00A5', premium: '750', link: 'STRIPE_LINK_JPY' },
+  KRW: { symbol: '\u20A9', premium: '6,900', link: 'STRIPE_LINK_KRW' },
+  CAD: { symbol: 'C$', premium: '6.99', link: 'STRIPE_LINK_CAD' },
+  DKK: { symbol: 'DKK', premium: '34.90', link: 'STRIPE_LINK_DKK' },
+  SEK: { symbol: 'SEK', premium: '52.90', link: 'STRIPE_LINK_SEK' },
+  NOK: { symbol: 'NOK', premium: '54.90', link: 'STRIPE_LINK_NOK' },
+  MXN: { symbol: 'MX$', premium: '89', link: 'STRIPE_LINK_MXN' },
 };
 
 // FOMO deals por pais (rotas reais, precos reais, cias reais)
@@ -384,6 +384,11 @@ function applyAll(lang, currCode, country) {
   document.getElementById('prem-name').textContent = t.premName;
   document.getElementById('prem-price').innerHTML = `${p.symbol} ${p.premium}<small>${t.premPeriod}</small>`;
   document.getElementById('prem-cta').textContent = t.premCta;
+  // Atualiza link do checkout pra moeda correta
+  if (p.link && !p.link.startsWith('STRIPE_LINK_')) {
+    document.getElementById('prem-cta').href = p.link;
+    document.querySelector('.pulsing-cta').href = p.link;
+  }
   document.getElementById('prem-badge').textContent = t.premBadge;
   document.getElementById('prem-micro').textContent = t.premMicro;
   document.querySelectorAll('.prem-features li').forEach((el, i) => { const k = `premF${i+1}`; if (t[k]) el.textContent = t[k]; });
@@ -419,15 +424,31 @@ function applyAll(lang, currCode, country) {
   document.getElementById('footer-text').textContent = `\u00A9 2026 ${t.footerText}`;
 }
 
+let currentLang = 'en';
+let currentCurr = 'USD';
+let currentCountry = 'US';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+  document.getElementById('lang-badge').textContent = lang === 'pt' ? '\ud83c\udde7\ud83c\uddf7 PT-BR' : '\ud83c\udf0d EN';
+  document.getElementById('pulse-text').textContent = lang === 'pt' ? 'Quero Meus Alertas!' : 'Get Alerts Now';
+  applyAll(lang, currentCurr, currentCountry);
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   const data = await detectCountry();
-  const lang = data.lang || 'en';
-  const curr = data.currency?.code || 'USD';
-  document.getElementById('lang-badge').textContent = lang === 'pt' ? '\ud83c\udde7\ud83c\uddf7 PT-BR' : '\ud83c\udf0d EN';
-  applyAll(lang, curr, data.country);
+  currentLang = data.lang || 'en';
+  currentCurr = data.currency?.code || 'USD';
+  currentCountry = data.country || 'US';
+  setLang(currentLang);
 
-  // Pulsing CTA text
-  document.getElementById('pulse-text').textContent = lang === 'pt' ? 'Quero Meus Alertas!' : 'Get Alerts Now';
+  // Language toggle
+  document.getElementById('lang-badge').addEventListener('click', () => {
+    currentLang = currentLang === 'pt' ? 'en' : 'pt';
+    setLang(currentLang);
+  });
+  document.getElementById('lang-badge').style.cursor = 'pointer';
 
   // FAQ toggle
   document.querySelectorAll('.faq-q').forEach(q => {

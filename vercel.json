@@ -8,7 +8,9 @@
     }
   ],
   "rewrites": [
-    { "source": "/checkout", "destination": "/pages/checkout.html" },
     { "source": "/success", "destination": "/pages/success.html" }
+  ],
+  "redirects": [
+    { "source": "/checkout", "destination": "https://buy.stripe.com/test_5kQaEQ26X0bF6jFesh4Vy00", "statusCode": 302 }
   ]
 }
