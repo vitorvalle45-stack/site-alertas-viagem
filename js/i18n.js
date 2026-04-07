@@ -930,9 +930,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Language options
   document.querySelectorAll('.lang-option').forEach(opt => {
-    opt.addEventListener('click', () => {
+    opt.addEventListener('click', (e) => {
+      e.stopPropagation();
       const lang = opt.dataset.lang;
       const curr = opt.dataset.curr;
+      // Update country group based on language for deals
+      const langToCountry = { pt:'BR', en:'US', es:'EU', fr:'EU', de:'EU', it:'EU', ru:'US', ja:'JP', ko:'KR', ar:'AE' };
+      currentCountry = langToCountry[lang] || 'US';
       setLang(lang, curr);
       selector.classList.remove('open');
     });
