@@ -57,12 +57,12 @@ header {
 .floating-flags {
   position: fixed; left: 0; top: 0; width: 60px; height: 100vh;
   display: flex; flex-direction: column; align-items: center;
-  justify-content: center; gap: 18px; z-index: 10; pointer-events: none;
+  justify-content: center; gap: 18px; z-index: 5; pointer-events: none;
 }
 .floating-flags-right {
   position: fixed; right: 0; top: 0; width: 60px; height: 100vh;
   display: flex; flex-direction: column; align-items: center;
-  justify-content: center; gap: 18px; z-index: 10; pointer-events: none;
+  justify-content: center; gap: 18px; z-index: 5; pointer-events: none;
 }
 .flag-float {
   width: 36px; height: auto; border-radius: 4px;
@@ -79,7 +79,7 @@ header {
 
 /* === HERO === */
 .hero {
-  padding: 140px 0 80px; text-align: center; position: relative;
+  padding: 140px 0 80px; text-align: center; position: relative; z-index: 10;
   background: radial-gradient(ellipse at 50% 30%, rgba(212,168,67,0.08) 0%, transparent 60%);
 }
 .hero-badge {
@@ -148,7 +148,7 @@ header {
 .proof-label { font-size: 0.8rem; color: var(--text-muted); }
 
 /* === CAROUSEL / ROLETA === */
-.carousel-section { padding: 70px 0; overflow: hidden; }
+.carousel-section { padding: 70px 0; overflow: hidden; position: relative; z-index: 15; }
 .carousel-section h2 { text-align: center; font-size: 2rem; margin-bottom: 40px; }
 .carousel-track {
   display: flex; gap: 20px; animation: scroll 30s linear infinite;
@@ -162,12 +162,12 @@ header {
 }
 
 .deal-slide {
-  flex-shrink: 0; width: 300px; border-radius: 16px; overflow: hidden;
+  position: relative; flex-shrink: 0; width: 300px; border-radius: 16px; overflow: hidden;
   background: var(--bg-card); border: 1px solid var(--border);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 .deal-slide:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 60px rgba(212,168,67,0.15); }
-.deal-slide img { width: 100%; height: 180px; object-fit: cover; }
+.deal-slide img { width: 100%; height: 180px; object-fit: cover; background: #1a1a2e; }
 .deal-slide-info { padding: 18px; }
 .deal-slide-route { font-weight: 700; font-size: 1.05rem; margin-bottom: 4px; }
 .deal-slide-sub { color: var(--text-muted); font-size: 0.78rem; margin-bottom: 10px; }
@@ -179,10 +179,9 @@ header {
   background: var(--urgent); color: #fff; padding: 4px 10px;
   border-radius: 6px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px;
 }
-.deal-slide { position: relative; }
 
 /* === FOMO === */
-.fomo { padding: 70px 0; }
+.fomo { padding: 70px 0; position: relative; z-index: 15; }
 .fomo h2 { text-align: center; font-size: 2rem; margin-bottom: 8px; color: var(--urgent); }
 .fomo .subtitle { text-align: center; color: var(--text-muted); margin-bottom: 40px; font-size: 1.05rem; }
 .fomo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }

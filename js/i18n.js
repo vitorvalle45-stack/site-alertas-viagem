@@ -337,7 +337,7 @@ const IMGS = {
   london: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=80',
   nyc: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&q=80',
   capetown: 'https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=600&q=80',
-  seoul: 'https://images.unsplash.com/photo-1583169702906-8d8e7d5e1137?w=600&q=80',
+  seoul: 'https://images.unsplash.com/photo-1546874177-9e664107314e?w=600&q=80',
   sydney: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&q=80',
   iceland: 'https://images.unsplash.com/photo-1504829857797-ddff29c27927?w=600&q=80',
   marrakech: 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=600&q=80',
@@ -513,7 +513,7 @@ function applyAll(lang, currCode, country) {
   document.getElementById('carousel-track').innerHTML = allDests.map(d => `
     <div class="deal-slide">
       <span class="deal-slide-tag">${d.tag}</span>
-      <img src="${d.img}" alt="${d.route}" loading="lazy">
+      <img src="${d.img}" alt="${d.route}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&q=80';this.onerror=null">
       <div class="deal-slide-info">
         <div class="deal-slide-route">\u2708\uFE0F ${d.route}</div>
         ${d.sub ? `<div class="deal-slide-sub">${d.sub}</div>` : ''}
