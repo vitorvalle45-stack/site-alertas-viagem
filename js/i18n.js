@@ -487,7 +487,7 @@ function applyAll(lang, currCode, country) {
   document.getElementById('fomo-sub').textContent = t.fomoSub;
   document.getElementById('fomo-cta').textContent = t.fomoCta;
   const fomoPool = FOMO_DEALS_BY_COUNTRY[cGroup] || FOMO_DEALS_BY_COUNTRY.US;
-  const fomoCount = Math.floor(Math.random() * 3) + 4; // 4 a 6 deals aleatorios
+  const fomoCount = 6; // sempre 6 deals pra grid ficar cheio
   const fomoDeals = pickRandom(fomoPool, fomoCount);
   document.getElementById('fomo-grid').innerHTML = fomoDeals.map(d => {
     const time = randomTime(lang);
