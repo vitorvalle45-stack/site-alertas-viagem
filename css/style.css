@@ -57,12 +57,12 @@ header {
 .floating-flags {
   position: fixed; left: 0; top: 0; width: 60px; height: 100vh;
   display: flex; flex-direction: column; align-items: center;
-  justify-content: center; gap: 18px; z-index: 50; pointer-events: none;
+  justify-content: center; gap: 18px; z-index: 10; pointer-events: none;
 }
 .floating-flags-right {
   position: fixed; right: 0; top: 0; width: 60px; height: 100vh;
   display: flex; flex-direction: column; align-items: center;
-  justify-content: center; gap: 18px; z-index: 50; pointer-events: none;
+  justify-content: center; gap: 18px; z-index: 10; pointer-events: none;
 }
 .flag-float {
   width: 36px; height: auto; border-radius: 4px;
