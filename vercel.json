@@ -23,6 +23,6 @@
     { "source": "/success", "destination": "/pages/success.html" }
   ],
   "redirects": [
-    { "source": "/checkout", "destination": "https://buy.stripe.com/test_5kQaEQ26X0bF6jFesh4Vy00", "statusCode": 302 }
+    { "source": "/checkout", "destination": "https://buy.stripe.com/28E3cp7GV5WQctA7kf6J200", "statusCode": 302 }
   ]
 }
