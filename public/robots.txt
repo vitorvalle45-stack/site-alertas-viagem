@@ -2,4 +2,3 @@ User-agent: *
 Disallow: /success
 Disallow: /api/
 Disallow: /checkout
-Sitemap: https://site-alertas-viagem.vercel.app/sitemap.xml

@@ -24,6 +24,7 @@ function verifyStripeSignature(payload, sigHeader, secret) {
     .update(signedPayload)
     .digest('hex');
 
+  if (signature.length !== expected.length) return false;
   return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
 }
 

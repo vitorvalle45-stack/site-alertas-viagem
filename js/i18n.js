@@ -376,7 +376,14 @@ function shuffleArray(arr) {
 function pickRandom(arr, n) { return shuffleArray(arr).slice(0, n); }
 function randomTime(lang) {
   const h = Math.floor(Math.random() * 71) + 1;
-  return lang === 'pt' ? `Expirou h\u00E1 ${h}h` : `Expired ${h}h ago`;
+  const templates = {
+    pt: `Expirou h\u00E1 ${h}h`, es: `Expir\u00F3 hace ${h}h`,
+    fr: `Expir\u00E9 il y a ${h}h`, de: `Abgelaufen vor ${h}h`,
+    it: `Scaduto ${h}h fa`, ru: `\u0418\u0441\u0442\u0435\u043A\u043B\u043E ${h}\u0447 \u043D\u0430\u0437\u0430\u0434`,
+    ja: `${h}\u6642\u9593\u524D\u306B\u671F\u9650\u5207\u308C`, ko: `${h}\uC2DC\uAC04 \uC804 \uB9CC\uB8CC`,
+    ar: `\u0627\u0646\u062A\u0647\u0649 \u0645\u0646\u0630 ${h} \u0633\u0627\u0639\u0629`,
+  };
+  return templates[lang] || `Expired ${h}h ago`;
 }
 
 // FOMO deals por pais — pool grande, 4-6 aleatorios por visita
@@ -485,7 +492,7 @@ const FOMO_DEALS_BY_COUNTRY = {
     { route: 'HND \u2192 Seoul (ANA, nonstop, 2h30)', original: '\u00A544,800', deal: '\u00A513,800', savings: '69% OFF' },
     { route: 'NRT \u2192 Canc\u00FAn (ANA, via LAX, 18h)', original: '\u00A5209,800', deal: '\u00A567,800', savings: '68% OFF' },
     { route: 'KIX \u2192 Maldivas (Singapore Air, via SIN, 14h)', original: '\u00A5199,800', deal: '\u00A564,800', savings: '68% OFF' },
-    { route: 'NRT \u2192 Roma (Alitalia, nonstop, 13h)', original: '\u00A5169,800', deal: '\u00A554,800', savings: '68% OFF' },
+    { route: 'NRT \u2192 Roma (ITA Airways, nonstop, 13h)', original: '\u00A5169,800', deal: '\u00A554,800', savings: '68% OFF' },
   ],
   CH: [
     { route: 'ZRH \u2192 Tokyo (SWISS, nonstop, 12h)', original: 'CHF 1,199', deal: 'CHF 399', savings: '67% OFF' },
@@ -550,7 +557,6 @@ const IMGS = {
   iceland: 'https://images.unsplash.com/photo-1504829857797-ddff29c27927?w=600&q=80',
   marrakech: 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=600&q=80',
 };
-const TAGS = ['ERROR FARE','BUG','MISTAKE','PROMO','DEAL','GLITCH','ERROR FARE'];
 
 // Dest deals por pais — pool expandido
 const DEST_DEALS_BY_COUNTRY = {
@@ -705,7 +711,7 @@ const DEST_DEALS_BY_COUNTRY = {
 // Fallback: mapeia pais pra grupo de deals
 function getCountryGroup(country) {
   const map = {
-    BR: 'BR', PT: 'BR',
+    BR: 'BR', PT: 'EU',
     US: 'US', MX: 'US',
     GB: 'GB', IE: 'GB',
     AU: 'AU', NZ: 'AU',
@@ -745,6 +751,10 @@ function applyAll(lang, currCode, country) {
   document.getElementById('proof2-l').textContent = t.proof2;
   document.getElementById('proof3-l').textContent = t.proof3;
   document.getElementById('proof4-l').textContent = t.proof4;
+  // Update proof savings number for current currency
+  const savingsMap = { BRL: 'R$4.200', USD: '$2,100', EUR: '\u20AC2.100', GBP: '\u00A31,890', JPY: '\u00A5310,000', KRW: '\u20A9620,000', AED: 'AED 7,700', CHF: 'CHF 2,100', CAD: 'C$2,800', AUD: 'A$3,100', DKK: '14.900 kr', SEK: '22.400 kr', NOK: '23.500 kr', MXN: 'MX$42,000' };
+  const proofN = document.getElementById('proof3-n');
+  if (proofN) proofN.textContent = savingsMap[currCode] || '$2,100';
 
   // FOMO
   document.getElementById('fomo-title').textContent = t.fomoTitle;
@@ -803,6 +813,10 @@ function applyAll(lang, currCode, country) {
   document.getElementById('comp-free').textContent = t.compFree;
   document.getElementById('comp-prem').textContent = t.compPrem;
   for (let i = 1; i <= 6; i++) document.getElementById(`comp${i}`).textContent = t[`comp${i}`];
+
+  // Logo transition Free → Premium
+  document.getElementById('lt-free').textContent = t.freeName;
+  document.getElementById('lt-premium').textContent = t.premName;
 
   // Pricing
   document.getElementById('pricing-title').textContent = t.pricingTitle;

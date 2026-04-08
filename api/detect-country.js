@@ -7,7 +7,7 @@ export default function handler(req, res) {
   }
 
   // Rate limiting: 30 requests/minute per IP
-  const ip = req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || 'unknown';
+  const ip = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || 'unknown';
   const now = Date.now();
   if (rateLimit[ip] && rateLimit[ip].count >= 30 && now - rateLimit[ip].start < 60000) {
     return res.status(429).json({ error: 'Too many requests' });
@@ -34,6 +34,11 @@ export default function handler(req, res) {
   const COUNTRY_TO_LANG = {
     BR: 'pt', PT: 'pt', AO: 'pt', MZ: 'pt',
     US: 'en', GB: 'en', AU: 'en', CA: 'en', NZ: 'en', IE: 'en', ZA: 'en',
+    ES: 'es', MX: 'es', AR: 'es', CO: 'es', CL: 'es', PE: 'es',
+    FR: 'fr', BE: 'fr',
+    DE: 'de', AT: 'de', CH: 'de',
+    IT: 'it', RU: 'ru', JP: 'ja', KR: 'ko',
+    AE: 'ar', SA: 'ar', QA: 'ar', BH: 'ar', KW: 'ar', OM: 'ar',
   };
 
   const COUNTRY_TO_CURRENCY = {
@@ -68,7 +73,7 @@ export default function handler(req, res) {
 
   const lang = COUNTRY_TO_LANG[country] || 'en';
 
-  // Cache for 1 hour at edge, serve stale while revalidating
-  res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
+  // No edge cache - response is per-user (based on IP geolocation)
+  res.setHeader('Cache-Control', 'private, no-cache');
   res.status(200).json({ country, city, lang, currency });
 }
