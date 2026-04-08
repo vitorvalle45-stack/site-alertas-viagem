@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/vitor/.claude/projects/c--Users-vitor-site-alertas-viagem/memory/**)",
+      "Skill(keybindings-help)",
+      "Skill(keybindings-help:*)",
+      "Read(//c/Users/vitor/site-alertas-viagem/**)",
+      "Bash(taskkill //F //IM python.exe)",
+      "Bash(taskkill //F //IM python3.exe)"
+    ]
+  }
+}

@@ -309,17 +309,6 @@
   </footer>
 
   <script src="/js/i18n.js"></script>
-  <script>
-    // Background slideshow - muda a cada 15 segundos
-    (function() {
-      const slides = document.querySelectorAll('.bg-slide');
-      let current = 0;
-      setInterval(() => {
-        slides[current].classList.remove('active');
-        current = (current + 1) % slides.length;
-        slides[current].classList.add('active');
-      }, 15000);
-    })();
-  </script>
+  <script src="/js/slideshow.js"></script>
 </body>
 </html>
