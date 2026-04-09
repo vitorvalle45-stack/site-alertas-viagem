@@ -275,7 +275,7 @@ const TEXTS = {
     heroTitle: '\u822A\u7A7A\u4F1A\u793E\u304C\u4FA1\u683C\u3092\u9593\u9055\u3048\u308B\u3002<span class="highlight">\u4F1A\u54E1\u304C\u5F97\u3092\u3059\u308B\u3002</span>',
     heroDesc: "24\u6642\u9593\u4F55\u767E\u4E07\u3082\u306E\u904B\u8CC3\u3092\u76E3\u8996\u3002\u822A\u7A7A\u4F1A\u793E\u304C\u30DF\u30B9\u3092\u3057\u305F\u3089\u3001\u3042\u306A\u305F\u306E\u643A\u5E2F\u304C\u6700\u521D\u306B\u632F\u52D5\u3002\u5E73\u5747\u7BC0\u7D04\u00A5310,000\u3002",
     btnPremium: "Premium\u30A2\u30E9\u30FC\u30C8\u3092\u89E3\u9664", btnFree: "\u7121\u6599\u3067\u59CB\u3081\u308B",
-    heroMicro: "\u3044\u3064\u3067\u3082\u30AD\u30E3\u30F3\u30BB\u30EB \u2022 \u30AB\u30FC\u30C9\u4E0D\u8981 \u2022 30\u65E5\u9593\u4FDD\u8A3C",
+    heroMicro: "\u3044\u3064\u3067\u3082\u30AD\u30E3\u30F3\u30BB\u30EB \u2022 \u30AB\u30FC\u30C9\u4E0D\u8981 \u2022 3\u65E5\u9593\u4FDD\u8A3C",
     proof1: "\u4F1A\u54E1", proof2: "\u30F6\u56FD", proof3: "\u5E73\u5747\u7BC0\u7D04", proof4: "\u30A8\u30E9\u30FC\u904B\u8CC3/\u6708",
     fomoTitle: "\u3042\u306A\u305F\u304C\u898B\u9003\u3057\u3066\u3044\u308B\u3082\u306E", fomoSub: "Premium\u4F1A\u54E1\u306F\u3053\u308C\u3089\u5168\u3066\u306E\u30C7\u30A3\u30FC\u30EB\u306B\u30EA\u30A2\u30EB\u30BF\u30A4\u30E0\u3067\u901A\u77E5\u3055\u308C\u307E\u3057\u305F\u3002", fomoCta: "\u898B\u9003\u3057\u3092\u6B62\u3081\u308B", expired: "\u671F\u9650\u5207\u308C",
     destTitle: "\u904E\u53BB\u6570\u65E5\u306E\u5B9F\u969B\u306E\u30C7\u30A3\u30FC\u30EB",
@@ -819,7 +819,7 @@ function applyAll(lang, currCode, country) {
   document.getElementById('carousel-track').innerHTML = allDests.map(d => `
     <div class="deal-slide">
       <span class="deal-slide-tag">${d.tag}</span>
-      <img src="${d.img}" alt="${d.route}" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#16213e)';this.style.objectFit='contain';this.alt='Deal';this.onerror=null">
+      <img src="${d.img}" alt="${d.route}" loading="lazy">
       <div class="deal-slide-info">
         <div class="deal-slide-route">\u2708\uFE0F ${d.route}</div>
         ${d.sub ? `<div class="deal-slide-sub">${d.sub}</div>` : ''}
@@ -830,6 +830,14 @@ function applyAll(lang, currCode, country) {
       </div>
     </div>
   `).join('');
+  // Image fallback (CSP-safe, no inline onerror)
+  document.querySelectorAll('.deal-slide img').forEach(img => {
+    img.addEventListener('error', function() {
+      this.style.background = 'linear-gradient(135deg,#1a1a2e,#16213e)';
+      this.style.objectFit = 'contain';
+      this.alt = 'Deal';
+    });
+  });
 
   // How
   document.getElementById('how-title').textContent = t.howTitle;
