@@ -351,20 +351,52 @@ const TEXTS = {
 };
 
 const PRICES = {
-  BRL: { symbol: 'R$', premium: '19,90', link: 'STRIPE_LINK_BRL' },
-  USD: { symbol: 'US$', premium: '4.99', link: 'STRIPE_LINK_USD' },
-  GBP: { symbol: '\u00A3', premium: '3.99', link: 'STRIPE_LINK_GBP' },
-  EUR: { symbol: '\u20AC', premium: '4,99', link: 'STRIPE_LINK_EUR' },
-  CHF: { symbol: 'CHF', premium: '4.90', link: 'STRIPE_LINK_CHF' },
-  AUD: { symbol: 'A$', premium: '7.99', link: 'STRIPE_LINK_AUD' },
-  AED: { symbol: 'AED', premium: '18.99', link: 'STRIPE_LINK_AED' },
-  JPY: { symbol: '\u00A5', premium: '780', link: 'STRIPE_LINK_JPY' },
-  KRW: { symbol: '\u20A9', premium: '6,900', link: 'STRIPE_LINK_KRW' },
-  CAD: { symbol: 'C$', premium: '6.99', link: 'STRIPE_LINK_CAD' },
-  DKK: { symbol: 'DKK', premium: '34,90', link: 'STRIPE_LINK_DKK' },
-  SEK: { symbol: 'SEK', premium: '52,90', link: 'STRIPE_LINK_SEK' },
-  NOK: { symbol: 'NOK', premium: '54,90', link: 'STRIPE_LINK_NOK' },
-  MXN: { symbol: 'MX$', premium: '89.99', link: 'STRIPE_LINK_MXN' },
+  BRL: { symbol: 'R$', premium: '19,90', link: 'https://buy.stripe.com/28E3cp7GV5WQctA7kf6J200' },
+  USD: { symbol: 'US$', premium: '4.99', link: 'https://buy.stripe.com/9B69ANf9n4SM1OW1ZV6J201' },
+  GBP: { symbol: '\u00A3', premium: '4.99', link: 'https://buy.stripe.com/7sY6oBf9netm65cbAv6J203' },
+  EUR: { symbol: '\u20AC', premium: '4,99', link: 'https://buy.stripe.com/8x2eV78KZ2KE9hodID6J202' },
+  CHF: { symbol: 'CHF', premium: '4.99', link: 'https://buy.stripe.com/4gMcMZ2mB2KE1OW8oj6J20a' },
+  AUD: { symbol: 'A$', premium: '7.99', link: 'https://buy.stripe.com/4gMfZb2mBfxq5187kf6J205' },
+  AED: { symbol: 'AED', premium: '18.99', link: 'https://buy.stripe.com/aFaaER3qFbha79g0VR6J209' },
+  JPY: { symbol: '\u00A5', premium: '780', link: 'https://buy.stripe.com/fZucMZ2mBclegJQ7kf6J206' },
+  KRW: { symbol: '\u20A9', premium: '6,900', link: 'https://buy.stripe.com/bJebIVgdr0Cw518bAv6J208' },
+  CAD: { symbol: 'C$', premium: '6.99', link: 'https://buy.stripe.com/cNi6oBgdr4SM9hodID6J204' },
+  DKK: { symbol: 'DKK', premium: '34,90', link: 'https://buy.stripe.com/8x2eV78KZ2KE9hodID6J202' },
+  SEK: { symbol: 'SEK', premium: '52,90', link: 'https://buy.stripe.com/8x2eV78KZ2KE9hodID6J202' },
+  NOK: { symbol: 'NOK', premium: '54,90', link: 'https://buy.stripe.com/8x2eV78KZ2KE9hodID6J202' },
+  MXN: { symbol: 'MX$', premium: '89.99', link: 'https://buy.stripe.com/00wfZb7GVclefFM0VR6J207' },
+};
+
+// Map EVERY country to checkout currency (IP-locked, prevents language switch exploit)
+// All 193 UN member states + territories mapped
+const COUNTRY_TO_CHECKOUT_CURRENCY = {
+  // BRL - Brazil
+  BR: 'BRL',
+  // GBP - United Kingdom + territories
+  GB: 'GBP', IM: 'GBP', JE: 'GBP', GG: 'GBP', GI: 'GBP', FK: 'GBP', SH: 'GBP', GS: 'GBP',
+  // EUR - Eurozone + EU
+  DE: 'EUR', FR: 'EUR', IT: 'EUR', ES: 'EUR', PT: 'EUR', NL: 'EUR', BE: 'EUR', AT: 'EUR',
+  FI: 'EUR', GR: 'EUR', IE: 'EUR', LU: 'EUR', MT: 'EUR', CY: 'EUR', EE: 'EUR', LV: 'EUR',
+  LT: 'EUR', SK: 'EUR', SI: 'EUR', HR: 'EUR', MC: 'EUR', SM: 'EUR', VA: 'EUR', AD: 'EUR',
+  ME: 'EUR', XK: 'EUR',
+  // Scandinavia → EUR (no separate DKK/SEK/NOK links needed, they pay EUR)
+  DK: 'EUR', SE: 'EUR', NO: 'EUR', IS: 'EUR',
+  // JPY - Japan
+  JP: 'JPY',
+  // KRW - South Korea
+  KR: 'KRW',
+  // AED - UAE + Gulf states
+  AE: 'AED', SA: 'AED', QA: 'AED', BH: 'AED', KW: 'AED', OM: 'AED',
+  // CHF - Switzerland + Liechtenstein
+  CH: 'CHF', LI: 'CHF',
+  // CAD - Canada
+  CA: 'CAD',
+  // AUD - Australia + territories
+  AU: 'AUD', NZ: 'AUD', FJ: 'AUD', PG: 'AUD', WS: 'AUD', TO: 'AUD', VU: 'AUD',
+  // MXN - Mexico
+  MX: 'MXN',
+  // USD - United States + all other countries default to USD
+  US: 'USD',
 };
 
 // Utility: shuffle array and pick N items
@@ -828,10 +860,12 @@ function applyAll(lang, currCode, country) {
   document.getElementById('prem-name').textContent = t.premName;
   document.getElementById('prem-price').innerHTML = `${p.symbol} ${p.premium}<small>${t.premPeriod}</small>`;
   document.getElementById('prem-cta').textContent = t.premCta;
-  // Atualiza link do checkout pra moeda correta
-  if (p.link && !p.link.startsWith('STRIPE_LINK_')) {
-    document.getElementById('prem-cta').href = p.link;
-    document.querySelector('.pulsing-cta').href = p.link;
+  // Checkout link locked to DETECTED IP country (anti-exploit: user can't switch language to pay less)
+  const checkoutCurr = COUNTRY_TO_CHECKOUT_CURRENCY[detectedCountry] || 'USD';
+  const checkoutPrice = PRICES[checkoutCurr] || PRICES.USD;
+  if (checkoutPrice.link) {
+    document.getElementById('prem-cta').href = checkoutPrice.link;
+    document.querySelector('.pulsing-cta').href = checkoutPrice.link;
   }
   document.getElementById('prem-badge').textContent = t.premBadge;
   document.getElementById('prem-micro').textContent = t.premMicro;
@@ -871,6 +905,7 @@ function applyAll(lang, currCode, country) {
 let currentLang = 'en';
 let currentCurr = 'USD';
 let currentCountry = 'US';
+let detectedCountry = 'US'; // IP-locked, NEVER changes — used for checkout currency
 
 // Map language to default currency
 const LANG_TO_CURR = {
@@ -902,14 +937,14 @@ const COUNTRY_TO_LANG_MAP = {
   AE: 'ar', SA: 'ar', QA: 'ar', BH: 'ar', KW: 'ar', OM: 'ar',
 };
 
-function setLang(lang, curr) {
+function setLang(lang, curr, flagOverride) {
   currentLang = lang;
   if (curr) currentCurr = curr;
   else currentCurr = LANG_TO_CURR[lang] || 'USD';
 
   document.documentElement.lang = lang;
-  const flag = LANG_TO_FLAG[lang] || 'us';
-  const label = LANG_LABELS[lang] || 'EN';
+  const flag = flagOverride || LANG_TO_FLAG[lang] || 'us';
+  const label = flagOverride === 'gb' ? 'EN-GB' : (LANG_LABELS[lang] || 'EN');
   document.getElementById('lang-flag').src = `https://flagcdn.com/w20/${flag}.png`;
   document.getElementById('lang-label').textContent = label;
 
@@ -941,9 +976,10 @@ document.addEventListener('DOMContentLoaded', () => {
       e.stopPropagation();
       const lang = opt.dataset.lang;
       const curr = opt.dataset.curr;
+      const flag = opt.dataset.flag;
       const langToCountry = { pt:'BR', en:'US', es:'EU', fr:'EU', de:'EU', it:'EU', ru:'US', ja:'JP', ko:'KR', ar:'AE' };
-      currentCountry = langToCountry[lang] || 'US';
-      setLang(lang, curr);
+      currentCountry = flag === 'gb' ? 'GB' : (langToCountry[lang] || 'US');
+      setLang(lang, curr, flag);
       selector.classList.remove('open');
     });
   });
@@ -961,11 +997,13 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const data = await detectCountry();
       currentCountry = data.country || 'US';
+      detectedCountry = currentCountry; // Lock IP country — NEVER changes after this
       currentCurr = data.currency?.code || 'USD';
       currentLang = COUNTRY_TO_LANG_MAP[currentCountry] || data.lang || 'en';
       if (!TEXTS[currentLang]) currentLang = 'en';
     } catch {
       currentCountry = 'US';
+      detectedCountry = 'US';
       currentCurr = 'USD';
       currentLang = 'en';
     }
