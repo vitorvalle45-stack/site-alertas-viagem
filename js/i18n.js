@@ -858,9 +858,22 @@ function applyAll(lang, currCode, country) {
   document.getElementById('lt-free').textContent = t.freeName;
   document.getElementById('lt-premium').textContent = t.premName;
 
-  // Pricing
+  // Pricing (dynamic price + savings based on currency)
   document.getElementById('pricing-title').textContent = t.pricingTitle;
-  document.getElementById('pricing-sub').textContent = t.pricingSub;
+  const savingsForSub = savingsMap[currCode] || '$2,100';
+  const pricingSubTemplates = {
+    pt: `Error fare m\u00E9dio economiza ${savingsForSub}. Premium custa ${p.symbol} ${p.premium}/m\u00EAs.`,
+    en: `Average error fare saves ${savingsForSub}. Premium costs ${p.symbol} ${p.premium}/mo.`,
+    es: `El error fare medio ahorra ${savingsForSub}. Premium cuesta ${p.symbol} ${p.premium}/mes.`,
+    fr: `L'error fare moyen \u00E9conomise ${savingsForSub}. Premium co\u00FBte ${p.symbol} ${p.premium}/mois.`,
+    de: `Durchschnittlicher Error Fare spart ${savingsForSub}. Premium kostet ${p.symbol} ${p.premium}/Monat.`,
+    it: `L'error fare medio risparmia ${savingsForSub}. Premium costa ${p.symbol} ${p.premium}/mese.`,
+    ru: `\u0421\u0440\u0435\u0434\u043D\u0438\u0439 error fare \u044D\u043A\u043E\u043D\u043E\u043C\u0438\u0442 ${savingsForSub}. Premium: ${p.symbol} ${p.premium}/\u043C\u0435\u0441.`,
+    ja: `\u5E73\u5747\u30A8\u30E9\u30FC\u904B\u8CC3\u306E\u7BC0\u7D04${savingsForSub}\u3002Premium\u306F${p.symbol} ${p.premium}/\u6708\u3002`,
+    ko: `\u5E73\u5747 \uC5D0\uB7EC\uC694\uAE08 \uC808\uC57D ${savingsForSub}. Premium ${p.symbol} ${p.premium}/\uC6D4.`,
+    ar: `\u0645\u062A\u0648\u0633\u0637 \u0627\u0644\u062A\u0648\u0641\u064A\u0631 ${savingsForSub}. Premium ${p.symbol} ${p.premium}/\u0634\u0647\u0631.`,
+  };
+  document.getElementById('pricing-sub').textContent = pricingSubTemplates[lang] || pricingSubTemplates.en;
   document.getElementById('free-name').textContent = t.freeName;
   document.getElementById('free-price').textContent = t.freePrice;
   document.getElementById('free-cta').textContent = t.freeCta;
